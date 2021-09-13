@@ -4,6 +4,8 @@
 #include "processor/init.h"
 #include <stdlib.h>
 #include <errno.h>
+#include "utils/tokenize.h"
+#include "utils/lists.h"
 
 int main(void) {
     char *inputBuffer = NULL;
@@ -15,7 +17,8 @@ int main(void) {
             perror("getline()");
             exit(errno);
         }
-        printf("typed: %s\n", inputBuffer);
+        list *tok = tokenize_command(inputBuffer);
+        tok->erase(tok);
     }
     free(inputBuffer);
     return 0;

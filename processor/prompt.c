@@ -25,12 +25,12 @@ void display_prompt(int status) {
         exit(errno);
     }
 
-    char *currPath = (char *) malloc(PATH_MAX);
-    getcwd(currPath, PATH_MAX);
-    if (!currPath) {
+    char *curr = (char *) malloc(PATH_MAX);
+    getcwd(curr, PATH_MAX);
+    if (!curr) {
         perror("getcwd()");
         exit(errno);
     }
-    parse_curr_dir(currPath);
-    printf("%s@%s:%s>", userName, systemName, currPath);
+    parse_curr_dir(curr);
+    printf("%s@%s:%s>", userName, systemName, curr);
 }
