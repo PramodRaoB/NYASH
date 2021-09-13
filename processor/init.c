@@ -1,14 +1,23 @@
-#include <malloc.h>
 #include <limits.h>
 #include <unistd.h>
-#include <assert.h>
 #include <stdio.h>
 #include "init.h"
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+
+char *shellHome = NULL;
+size_t homeLen = 0;
 
 void initialize_shell(void) {
     shellHome = (char *)malloc(PATH_MAX);
-    assert(shellHome != NULL);
+    if (shellHome == NULL) {
+        perror("malloc()");
+        exit(errno);
+    }
     if (getcwd(shellHome, PATH_MAX) == NULL) {
         perror("getcwd() error");
+        exit(errno);
     }
+    homeLen = strlen(shellHome);
 }
