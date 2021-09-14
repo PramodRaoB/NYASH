@@ -2,9 +2,11 @@
 #include "../globals.h"
 #include <string.h>
 #include <stdio.h>
+#include <malloc.h>
 #include "../commands/pwd.h"
 #include "../commands/echo.h"
 #include "../commands/cd.h"
+#include "../commands/ls.h"
 
 /*
  * If HOME is a prefix of the current path
@@ -19,6 +21,30 @@ void parse_curr_dir(char *path) {
         if (HOME[i] != path[i]) return;
     }
     sprintf(path, "~%s", path + i);
+}
+
+char *expand_path(char *path) {
+    char *finalPath;
+    if (path == NULL) return NULL;
+    if (strlen(path) == 1 && path[0] == '~') {
+        finalPath = (char *) malloc(strlen(HOME) + 1);
+        strcpy(finalPath, HOME);
+        return finalPath;
+    }
+    if (strlen(path) == 2 && path[0] == '~' && path[1] == '/') {
+        finalPath = (char *) malloc(strlen(HOME) + 1);
+        strcpy(finalPath, HOME);
+        return finalPath;
+    }
+    if (strlen(path) > 2 && path[0] == '~' && path[1] == '/') {
+        finalPath = (char *) malloc(strlen(HOME) + strlen(path));
+        strcpy(finalPath, HOME);
+        strcat(finalPath, path + 2);
+        return finalPath;
+    }
+    finalPath = (char *) malloc(strlen(path) + 1);
+    strcpy(finalPath, path);
+    return finalPath;
 }
 
 /*
@@ -38,6 +64,8 @@ int parse_command(list *tokens) {
         return echo(tokens);
     else if (strcmp(tokens->arr[0], "cd") == 0)
         return cd(tokens);
+    else if (strcmp(tokens->arr[0], "ls") == 0)
+        return ls(tokens);
     else {
         printf("%s: Unrecognized command\n", tokens->arr[0]);
         return 1;

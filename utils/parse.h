@@ -4,6 +4,7 @@
 #include "lists.h"
 
 void parse_curr_dir(char *path);
+char *expand_path(char *path);
 int parse_command(list *tokens);
 
 #endif //NYASH_PARSE_H

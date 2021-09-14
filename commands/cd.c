@@ -15,22 +15,18 @@ int cd(list *tokens) {
     }
     char *target = NULL;
     bool prev = false;
-    if (tokens->size == 1)
-        target = HOME;
+    if (tokens->size == 1) {
+        target = (char *) malloc(strlen(HOME) + 1);
+        strcpy(target, HOME);
+    }
     else {
-        target = tokens->arr[1];
-        if (target && strcmp(target, "-") == 0) {
+        if (tokens->arr[1] && strcmp(tokens->arr[1], "-") == 0) {
             prev = true;
-            target = prevPath;
+            target = (char *) malloc(strlen(prevPath) + 1);
+            strcpy(target, prevPath);
         }
-        if (target) {
-            if (strlen(target) == 1 && target[0] == '~')
-                target = HOME;
-            else if (strlen(target) == 2 && target[0] == '~' && target[1] == '/')
-                target = HOME;
-            else if (strlen(target) > 2 && target[0] == '~' && target[1] == '/') {
-                if (chdir(HOME) != -1) target = target + 2;
-            }
+        else {
+            target = expand_path(tokens->arr[1]);
         }
     }
     if (target != NULL && chdir(target) != -1) {
@@ -44,10 +40,12 @@ int cd(list *tokens) {
             parse_curr_dir(temp);
             printf("%s\n", temp);
         }
+        free(target);
         return 0;
     }
     else {
         printf("cd: Invalid target\n");
+        if (target) free(target);
         return 1;
     }
 }
