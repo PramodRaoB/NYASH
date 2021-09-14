@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <limits.h>
+#include <string.h>
+#include "../globals.h"
 #include "../utils/parse.h"
 
 void display_prompt(int status) {
@@ -25,10 +27,10 @@ void display_prompt(int status) {
         exit(errno);
     }
 
-    char *curr = (char *) malloc(PATH_MAX);
-    getcwd(curr, PATH_MAX);
+    char *curr = (char *) malloc(strlen(currPath) + 1);
+    strcpy(curr, currPath);
     if (!curr) {
-        perror("getcwd()");
+        perror("strcpy()");
         exit(errno);
     }
     parse_curr_dir(curr);

@@ -6,24 +6,24 @@
 #include <errno.h>
 #include <string.h>
 
-char *shellHome = NULL;
+char *HOME = NULL;
 char *currPath = NULL;
 char *prevPath = NULL;
 size_t homeLen = 0;
 
 void initialize_shell(void) {
-    shellHome = (char *)malloc(PATH_MAX);
+    HOME = (char *)malloc(PATH_MAX);
     currPath = (char *)malloc(PATH_MAX);
     prevPath = (char *)malloc(PATH_MAX);
-    if (shellHome == NULL) {
+    if (HOME == NULL) {
         perror("malloc()");
         exit(errno);
     }
-    if (getcwd(shellHome, PATH_MAX) == NULL) {
+    if (getcwd(HOME, PATH_MAX) == NULL) {
         perror("getcwd() error");
         exit(errno);
     }
-    strcpy(currPath, shellHome);
-    strcpy(prevPath, shellHome);
-    homeLen = strlen(shellHome);
+    strcpy(currPath, HOME);
+    strcpy(prevPath, HOME);
+    homeLen = strlen(HOME);
 }

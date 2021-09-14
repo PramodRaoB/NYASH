@@ -1,10 +1,15 @@
-#include "pwd.h"
-#include <unistd.h>
+#include "./pwd.h"
 #include <stdlib.h>
-#include <limits.h>
+#include <string.h>
+#include <stdio.h>
+#include "../globals.h"
+#include "../utils/parse.h"
 
-char *pwd(void) {
-    char *currPath = (char *) malloc(PATH_MAX);
-    getcwd(currPath, PATH_MAX);
-    return currPath;
+int pwd(list *tokens) {
+    if (tokens->size > 1) {
+        printf("pwd: Error too many arguments\n");
+        return 1;
+    }
+    printf("%s\n", currPath);
+    return 0;
 }
