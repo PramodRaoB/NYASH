@@ -4,17 +4,54 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
-#include <string.h>
 #include <malloc.h>
 #include "../globals.h"
 #include "../utils/parse.h"
 #include <pwd.h>
 #include <grp.h>
+#include <errno.h>
 #include <time.h>
+
+int print_total(char *path, int flagA) {
+    DIR *fDir = opendir(path);
+    if (fDir == NULL) {
+        perror("opendir()");
+        return 1;
+    }
+    long total = 0;
+    struct dirent *entry = NULL;
+    char *filePath = (char *) malloc(PATH_MAX);
+    struct stat statBuff;
+
+    errno = 0;
+    while ((entry = readdir(fDir))) {
+        if (!flagA && entry->d_name[0] == '.') continue;
+        sprintf(filePath, "%s/%s", path, entry->d_name);
+        if (filePath == NULL) {
+            perror("sprintf()");
+            return 1;
+        }
+
+        if (lstat(filePath, &statBuff) == -1) {
+            perror("stat()");
+            return 1;
+        }
+
+        total += statBuff.st_blocks;
+    }
+    if (errno != 0) {
+        perror("readdir()");
+        return 1;
+    }
+    printf("Total: %ld\n", total / 2);
+    closedir(fDir);
+    return 0;
+}
 
 int ls_processDir(char *path, int flagA, int flagL) {
     char *processedPath = expand_path(path);
     if (processedPath == NULL) return 1;
+    if (flagL && print_total(processedPath, flagA)) return 1;
     DIR *fDir = opendir(processedPath);
     if (fDir == NULL) {
         perror("opendir()");
@@ -23,10 +60,11 @@ int ls_processDir(char *path, int flagA, int flagL) {
     struct dirent *entry = NULL;
     char *filePath = (char *) malloc(PATH_MAX);
     struct stat statBuff;
+    errno = 0;
 
     while ((entry = readdir(fDir))) {
         if (!flagA && entry->d_name[0] == '.') continue;
-        sprintf(filePath, "%s/%s", path, entry->d_name);
+        sprintf(filePath, "%s/%s", processedPath, entry->d_name);
         if (filePath == NULL) {
             perror("sprintf()");
             return 1;
@@ -69,7 +107,7 @@ int ls_processDir(char *path, int flagA, int flagL) {
             //printf("%ld ", statBuff.st_mtim.tv_sec);
             char formattedTime[25];
             long timeSinceEpoch = statBuff.st_mtim.tv_sec;
-            strftime(formattedTime, 25, "%b %d %H:%M", localtime(&timeSinceEpoch));
+            strftime(formattedTime, 15, "%b %d %H:%M", localtime(&timeSinceEpoch));
             printf("%s ", formattedTime);
         }
 
@@ -77,6 +115,11 @@ int ls_processDir(char *path, int flagA, int flagL) {
         if (flagL) printf("\n");
         else printf(" ");
     }
+    if (errno != 0) {
+        perror("readdir()");
+        return 1;
+    }
+    closedir(fDir);
     if (!flagL) printf("\n");
     free(processedPath);
     return 0;

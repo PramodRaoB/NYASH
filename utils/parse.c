@@ -39,7 +39,7 @@ char *expand_path(char *path) {
     if (strlen(path) > 2 && path[0] == '~' && path[1] == '/') {
         finalPath = (char *) malloc(strlen(HOME) + strlen(path));
         strcpy(finalPath, HOME);
-        strcat(finalPath, path + 2);
+        strcat(finalPath, path + 1);
         return finalPath;
     }
     finalPath = (char *) malloc(strlen(path) + 1);
