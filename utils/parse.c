@@ -7,6 +7,7 @@
 #include "../commands/echo.h"
 #include "../commands/cd.h"
 #include "../commands/ls.h"
+#include "../commands/pinfo.h"
 
 /*
  * If HOME is a prefix of the current path
@@ -66,6 +67,8 @@ int parse_command(list *tokens) {
         return cd(tokens);
     else if (strcmp(tokens->arr[0], "ls") == 0)
         return ls(tokens);
+    else if (strcmp(tokens->arr[0], "pinfo") == 0)
+        return pinfo(tokens);
     else {
         printf("%s: Unrecognized command\n", tokens->arr[0]);
         return 1;
