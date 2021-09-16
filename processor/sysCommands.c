@@ -24,7 +24,10 @@ int exec_sys_command(list *tokens) {
     }
     if (childPid == 0) {
         //child code
-        setpgid(0, 0);
+        if (setpgid(0, 0) == -1) {
+            perror("setpgid");
+            return 1;
+        }
         if (execvp(tokens->arr[0], tokens->arr) == -1) {
             perror(tokens->arr[0]);
             return 1;
@@ -32,9 +35,18 @@ int exec_sys_command(list *tokens) {
     }
     else {
         signal(SIGTTOU, SIG_IGN);
-        tcsetpgrp(0, childPid);
+        if (tcsetpgrp(0, childPid) == -1) {
+            perror("tcsetpgrp");
+            signal(SIGTTOU, SIG_DFL);
+            return 1;
+        }
         waitpid(childPid, &statusCode, WUNTRACED);
-        tcsetpgrp(0, getpgrp());
+
+        if (tcsetpgrp(0, getpgrp()) == -1) {
+            perror("tcsetpgrp");
+            signal(SIGTTOU, SIG_DFL);
+            return 1;
+        }
         signal(SIGTTOU, SIG_DFL);
     }
     return 0;
