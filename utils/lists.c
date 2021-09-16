@@ -13,6 +13,10 @@ void initList(list **newList) {
     (*newList)->size = 0;
     (*newList)->capacity = 1;
     (*newList)->arr = (char **)malloc(sizeof(char *));
+    if ((*newList)->arr == NULL) {
+        perror("malloc");
+        exit(errno);
+    }
     (*newList)->append = &appendList;
     (*newList)->erase = &eraseList;
 }
@@ -27,7 +31,15 @@ void appendList(list *l, char *str) {
         return;
     }
     l->arr[l->size] = (char *) malloc(strlen(str) + 1);
+    if (l->arr[l->size] == NULL) {
+        perror("malloc");
+        exit(EXIT_FAILURE);
+    }
     strcpy(l->arr[l->size], str);
+    if (l->arr[l->size] == NULL) {
+        perror("strcpy");
+        exit(EXIT_FAILURE);
+    }
     l->size++;
 }
 

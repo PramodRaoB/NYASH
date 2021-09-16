@@ -8,4 +8,4 @@ add_executable(NYASH
         processor/init.c
         processor/init.h
         processor/prompt.c
-        processor/prompt.h utils/parse.c utils/parse.h commands/pwd.c commands/pwd.h utils/tokenize.c utils/tokenize.h utils/lists.c utils/lists.h commands/echo.c commands/echo.h commands/cd.c commands/cd.h commands/ls.c commands/ls.h processor/sysCommands.c processor/sysCommands.h commands/pinfo.c commands/pinfo.h)
+        processor/prompt.h utils/parse.c utils/parse.h commands/pwd.c commands/pwd.h utils/tokenize.c utils/tokenize.h utils/lists.c utils/lists.h commands/echo.c commands/echo.h commands/cd.c commands/cd.h commands/ls.c commands/ls.h processor/sysCommands.c processor/sysCommands.h commands/pinfo.c commands/pinfo.h commands/repeat.c commands/repeat.h)
