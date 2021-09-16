@@ -6,6 +6,7 @@
 #include <limits.h>
 #include "pinfo.h"
 #include "../utils/tokenize.h"
+#include "../utils/parse.h"
 
 int pinfo(list *tokens) {
     if (tokens->size > 2) {
@@ -40,9 +41,11 @@ int pinfo(list *tokens) {
     list *statArgs = tokenize_command(data);
     if (statArgs == NULL) return 1;
     //man 5 proc
-    printf("pid -- %d\n", atoi(statArgs->arr[0]));
-    printf("Process Status -- %s\n", statArgs->arr[2]);
-    printf("memory -- %lu\n", atol(statArgs->arr[22]));
+    printf("pid -- %s\n", statArgs->arr[0]);
+    printf("Process Status -- %s", statArgs->arr[2]);
+    //apend + if foreground process
+    printf(strcmp(statArgs->arr[4], statArgs->arr[7]) == 0 ? "+\n" : "\n");
+    printf("memory -- %s\n", statArgs->arr[22]);
 
     char *procExe = (char *) malloc(20);
     if (!procExe) {
@@ -50,20 +53,20 @@ int pinfo(list *tokens) {
         return 1;
     }
     sprintf(procExe, "/proc/%d/exe", pid);
-    char *exePath = (char *) malloc(PATH_MAX);
+    char *exePath = (char *) malloc(PATH_MAX + 1);
     if (!exePath) {
         perror("malloc()");
         return 1;
     }
-    size_t exeSize = PATH_MAX;
+    size_t exeSize = PATH_MAX + 1;
     ssize_t bytesRead = readlink(procExe, exePath, exeSize);
     if (bytesRead == -1) {
-        perror("readlink()");
-        return 1;
+        perror("readlink");
+        return 0;
     }
-    printf("Executable Path -- ");
-    for (int i = 0; i < bytesRead; i++) printf("%c", exePath[i]);
-    printf("\n");
+    exePath[bytesRead] = '\0';
+    parse_curr_dir(exePath);
+    printf("Executable Path -- %s\n", exePath);
     free(exePath);
 
     statArgs->erase(statArgs);

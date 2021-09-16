@@ -91,12 +91,12 @@ int ls_l_info(char *path) {
     return 0;
 }
 
-int ls_processDir(char *path, int flagA, int flagL) {
+int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
     char *processedPath = expand_path(path);
     if (processedPath == NULL) return 1;
     struct stat statBuff;
     if (lstat(processedPath, &statBuff) == -1) {
-        perror("stat()");
+        perror(processedPath);
         return 1;
     }
     if (!S_ISDIR(statBuff.st_mode)) {
@@ -104,6 +104,9 @@ int ls_processDir(char *path, int flagA, int flagL) {
         printf("%s",path);
         printf(flagL ? "\n" : " ");
         return 0;
+    }
+    if (multipleDirs) {
+        printf("%s:\n", processedPath);
     }
 
     if (flagL && print_total(processedPath, flagA)) return 1;
@@ -133,6 +136,7 @@ int ls_processDir(char *path, int flagA, int flagL) {
         perror("readdir()");
         return 1;
     }
+    if (multipleDirs) printf("\n");
     closedir(fDir);
     free(processedPath);
     return 0;
@@ -155,13 +159,19 @@ int ls(list *tokens) {
         }
     }
 
-    int hasArgs = 0, statusCode = 0;
-    //TODO: Make the directory labels when there are multiple directory arguments
+    int hasArgs = 0, statusCode = 0, multipleDirs = 0;
+    if (optind < tokens->size - 1) {
+        //print directory names as well before printing their contents
+        multipleDirs = 1;
+    }
     for (; optind < tokens->size; optind++) {
         hasArgs = 1;
-        statusCode |= ls_processDir(tokens->arr[optind], flagA, flagL);
+        statusCode |= ls_processDir(tokens->arr[optind], flagA, flagL, multipleDirs);
+        if (!flagL) printf("\n");
     }
-    if (!hasArgs) statusCode |= ls_processDir(".", flagA, flagL);
-    if (!flagL) printf("\n");
+    if (!hasArgs) {
+        statusCode |= ls_processDir(".", flagA, flagL, multipleDirs);
+        printf("\n");
+    }
     return statusCode;
 }

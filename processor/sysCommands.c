@@ -34,6 +34,10 @@ int exec_sys_command(list *tokens) {
         }
     }
     else {
+        if (bg) {
+            printf("%d\n", childPid);
+            return 0;
+        }
         signal(SIGTTOU, SIG_IGN);
         if (tcsetpgrp(0, childPid) == -1) {
             perror("tcsetpgrp");
