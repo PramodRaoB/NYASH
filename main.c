@@ -7,9 +7,12 @@
 #include "utils/tokenize.h"
 #include "utils/lists.h"
 #include "utils/parse.h"
+#include <signal.h>
 
 int main(void) {
     char *inputBuffer = NULL;
+    signal(SIGINT, SIG_IGN);
+    signal(SIGTSTP, SIG_IGN);
     initialize_shell();
     int status = 0;
     while (status != -1 && status != 5) {
@@ -23,6 +26,8 @@ int main(void) {
         status = parse_command(tokens);
         tokens->erase(tokens);
     }
+    signal(SIGINT, SIG_DFL);
+    signal(SIGTSTP, SIG_DFL);
     if (status == -1) {
         printf("NYASH: critical error. Exiting\n");
         return -1;

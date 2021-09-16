@@ -2,12 +2,13 @@
 #include "../globals.h"
 #include <string.h>
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "../commands/pwd.h"
 #include "../commands/echo.h"
 #include "../commands/cd.h"
 #include "../commands/ls.h"
 #include "../commands/pinfo.h"
+#include "../processor/sysCommands.h"
 
 /*
  * If HOME is a prefix of the current path
@@ -69,8 +70,12 @@ int parse_command(list *tokens) {
         return ls(tokens);
     else if (strcmp(tokens->arr[0], "pinfo") == 0)
         return pinfo(tokens);
+    else if (strcmp(tokens->arr[0], "exit") == 0) {
+        exit(0);
+    }
     else {
-        printf("%s: Unrecognized command\n", tokens->arr[0]);
-        return 1;
+//        printf("%s: Unrecognized command\n", tokens->arr[0]);
+//        return 1;
+        return exec_sys_command(tokens);
     }
 }

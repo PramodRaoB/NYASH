@@ -7,7 +7,6 @@ list *tokenize_command(char *inputBuffer) {
     initList(&tokens);
     char *savePtr;
 
-    int currentStatus = 0;
     char *nextToken = strtok_r(inputBuffer, " \t\n", &savePtr);
     while (nextToken) {
         tokens->append(tokens, nextToken);

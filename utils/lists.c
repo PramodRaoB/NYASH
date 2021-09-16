@@ -22,6 +22,10 @@ void appendList(list *l, char *str) {
         l->capacity *= 2;
         l->arr = (char **) realloc(l->arr, l->capacity * sizeof(char *));
     }
+    if (str == NULL) {
+        l->arr[l->size] = NULL;
+        return;
+    }
     l->arr[l->size] = (char *) malloc(strlen(str) + 1);
     strcpy(l->arr[l->size], str);
     l->size++;
@@ -29,8 +33,9 @@ void appendList(list *l, char *str) {
 
 void eraseList(list *l) {
     if (!l) return;
-    for (int i = 0; i < l->size; i++) free(l->arr[i]);
+    for (int i = 0; i < l->size; i++) if(l->arr[i]) free(l->arr[i]);
     l->size = 0;
-    free(l->arr);
+    if (l->arr)
+        free(l->arr);
     free(l);
 }
