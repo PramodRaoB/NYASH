@@ -14,3 +14,16 @@ list *tokenize_command(char *inputBuffer) {
     }
     return tokens;
 }
+
+list *tokenize_input(char *inputBuffer) {
+    list *commands = NULL;
+    initList(&commands);
+    char *savePtr;
+
+    char *nextCommand = strtok_r(inputBuffer, ";\n", &savePtr);
+    while (nextCommand) {
+        commands->append(commands, nextCommand);
+        nextCommand = strtok_r(NULL, ";\n", &savePtr);
+    }
+    return commands;
+}

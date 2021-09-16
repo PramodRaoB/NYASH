@@ -22,9 +22,14 @@ int main(void) {
             perror("getline()");
             exit(errno);
         }
-        list *tokens = tokenize_command(inputBuffer);
-        status = parse_command(tokens);
-        tokens->erase(tokens);
+        list *commands = tokenize_input(inputBuffer);
+        if (!commands) continue;
+        for (int i = 0; i < commands->size; i++) {
+            list *tokens = tokenize_command(commands->arr[i]);
+            status = parse_command(tokens);
+            tokens->erase(tokens);
+        }
+        commands->erase(commands);
     }
     signal(SIGINT, SIG_DFL);
     signal(SIGTSTP, SIG_DFL);
