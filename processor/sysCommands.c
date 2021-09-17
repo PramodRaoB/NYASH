@@ -24,13 +24,15 @@ int exec_sys_command(list *tokens) {
     }
     if (childPid == 0) {
         //child code
+        signal(SIGINT, SIG_DFL);
+        signal(SIGSTOP, SIG_DFL);
         if (setpgid(0, 0) == -1) {
             perror("setpgid");
             return 1;
         }
         if (execvp(tokens->arr[0], tokens->arr) == -1) {
-            perror(tokens->arr[0]);
-            return 1;
+            printf("NYASH: command not found: %s\n", tokens->arr[0]);
+            exit(1);
         }
     }
     else {
@@ -39,19 +41,22 @@ int exec_sys_command(list *tokens) {
             return 0;
         }
         signal(SIGTTOU, SIG_IGN);
-        if (tcsetpgrp(0, childPid) == -1) {
+        signal(SIGTTIN, SIG_IGN);
+        if (tcsetpgrp(STDIN_FILENO, childPid) == -1) {
             perror("tcsetpgrp");
             signal(SIGTTOU, SIG_DFL);
             return 1;
         }
         waitpid(childPid, &statusCode, WUNTRACED);
 
-        if (tcsetpgrp(0, getpgrp()) == -1) {
+        if (tcsetpgrp(STDIN_FILENO, getpgrp()) == -1) {
             perror("tcsetpgrp");
             signal(SIGTTOU, SIG_DFL);
+            signal(SIGTTIN, SIG_DFL);
             return 1;
         }
         signal(SIGTTOU, SIG_DFL);
+        signal(SIGTTIN, SIG_DFL);
     }
     return 0;
 }
