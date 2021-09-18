@@ -1,7 +1,7 @@
 #include "globals.h"
 #include "processor/init.h"
 #include "processor/prompt.h"
-#include "utils/lists.h"
+#include "utils/vector.h"
 #include "utils/parse.h"
 #include "utils/tokenize.h"
 #include <errno.h>
@@ -22,11 +22,11 @@ int main(void) {
       perror("getline()");
       exit(errno);
     }
-    list *commands = tokenize_input(inputBuffer);
+    vector *commands = tokenize_input(inputBuffer);
     if (!commands)
       continue;
     for (int i = 0; i < commands->size; i++) {
-      list *tokens = tokenize_command(commands->arr[i]);
+      vector *tokens = tokenize_command(commands->arr[i]);
       status = parse_command(tokens);
       tokens->erase(tokens);
     }

@@ -8,7 +8,7 @@
 #include "../utils/tokenize.h"
 #include "../utils/parse.h"
 
-int pinfo(list *tokens) {
+int pinfo(vector *tokens) {
     if (tokens->size > 2) {
         printf("pinfo: Error too many arguments\n");
         return 1;
@@ -38,7 +38,7 @@ int pinfo(list *tokens) {
     }
     fclose(status);
 
-    list *statArgs = tokenize_command(data);
+    vector *statArgs = tokenize_command(data);
     if (statArgs == NULL) return 1;
     //man 5 proc
     printf("pid -- %s\n", statArgs->arr[0]);

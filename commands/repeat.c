@@ -4,14 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-int repeat(list *tokens) {
+int repeat(vector *tokens) {
     if (tokens->size < 3) {
-        printf("Usage: repeat [N] [command]\n");
+        printf("Usage: repeat [N >= 0] [command]\n");
         return 1;
     }
     for (int i = 0; i < strlen(tokens->arr[1]); i++) {
         if (tokens->arr[1][i] < '0' || tokens->arr[1][i] > '9') {
-            printf("Usage: repeat [N] [command]\n");
+            printf("Usage: repeat [N >= 0] [command]\n");
             return 1;
         }
     }
@@ -22,9 +22,9 @@ int repeat(list *tokens) {
     }
     int statusCode = 0;
     while (numRepeat--) {
-        list *newTokens = NULL;
-        initList(&newTokens);
-        for (int i = 2; i < tokens->size; i++) newTokens->append(newTokens, tokens->arr[i]);
+        vector *newTokens = NULL;
+        init_vector(&newTokens);
+        for (int i = 2; i < tokens->size; i++) newTokens->push_back(newTokens, tokens->arr[i]);
         statusCode |= parse_command(newTokens);
         newTokens->erase(newTokens);
     }

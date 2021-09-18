@@ -1,11 +1,11 @@
-#include "lists.h"
+#include "vector.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
 
-void initList(list **newList) {
-    *newList = (list *) malloc(sizeof(list));
+void init_vector(vector **newList) {
+    *newList = (vector *) malloc(sizeof(vector));
     if (!(*newList)) {
         perror("malloc()");
         exit(errno);
@@ -17,11 +17,11 @@ void initList(list **newList) {
         perror("malloc");
         exit(errno);
     }
-    (*newList)->append = &appendList;
-    (*newList)->erase = &eraseList;
+    (*newList)->push_back = &vector_push_back;
+    (*newList)->erase = &erase_vector;
 }
 
-void appendList(list *l, char *str) {
+void vector_push_back(vector *l, char *str) {
     if (l->size == l->capacity) {
         l->capacity *= 2;
         l->arr = (char **) realloc(l->arr, l->capacity * sizeof(char *));
@@ -43,7 +43,7 @@ void appendList(list *l, char *str) {
     l->size++;
 }
 
-void eraseList(list *l) {
+void erase_vector(vector *l) {
     if (!l) return;
     for (int i = 0; i < l->size; i++) if(l->arr[i]) free(l->arr[i]);
     l->size = 0;

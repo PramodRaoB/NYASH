@@ -51,13 +51,13 @@ char *expand_path(char *path) {
 }
 
 /*
- * given a list of tokens for a command, parses it and
+ * given a vector of tokens for a command, parses it and
  * calls the right function
  * return 1 -> unrecognized command / syntax error
  * return 2 -> parsing error
  * return -1 -> critical error
  * */
-int parse_command(list *tokens) {
+int parse_command(vector *tokens) {
     if (tokens == NULL) return -1;
     if (tokens->size == 0) return 2;
     if (tokens->arr[0] == NULL) return 2;

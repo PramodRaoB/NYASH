@@ -8,7 +8,7 @@
 #include "../globals.h"
 #include "../utils/parse.h"
 
-int cd(list *tokens) {
+int cd(vector *tokens) {
     if (tokens->size > 2) {
         printf("cd: Error too many arguments\n");
         return 1;

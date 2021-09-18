@@ -142,7 +142,7 @@ int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
     return 0;
 }
 
-int ls(list *tokens) {
+int ls(vector *tokens) {
     optind = 0;
     int opt, flagL = 0, flagA = 0;
     while ((opt = getopt(tokens->size, tokens->arr, ":la")) != -1) {

@@ -5,7 +5,7 @@
 #include "../globals.h"
 #include "../utils/parse.h"
 
-int pwd(list *tokens) {
+int pwd(vector *tokens) {
     if (tokens->size > 1) {
         printf("pwd: Error too many arguments\n");
         return 1;

@@ -1,0 +1,6 @@
+#ifndef NYASH_HISTORY_H
+#define NYASH_HISTORY_H
+
+
+
+#endif //NYASH_HISTORY_H

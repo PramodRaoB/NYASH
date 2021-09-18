@@ -7,4 +7,7 @@ extern char *currPath;
 extern char *prevPath;
 extern size_t homeLen;
 
+extern char *homeDir;
+extern int historyFd;
+
 #endif

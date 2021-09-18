@@ -1,8 +1,8 @@
 #ifndef NYASH_PWD_H
 #define NYASH_PWD_H
 
-#include "../utils/lists.h"
+#include "../utils/vector.h"
 
-int pwd(list *tokens);
+int pwd(vector *tokens);
 
 #endif //NYASH_PWD_H

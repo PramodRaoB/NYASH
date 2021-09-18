@@ -1,9 +1,9 @@
 #ifndef NYASH_TOKENIZE_H
 #define NYASH_TOKENIZE_H
 
-#include "lists.h"
+#include "vector.h"
 
-list *tokenize_command(char *inputBuffer);
-list *tokenize_input(char *inputBuffer);
+vector *tokenize_command(char *inputBuffer);
+vector *tokenize_input(char *inputBuffer);
 
 #endif //NYASH_TOKENIZE_H

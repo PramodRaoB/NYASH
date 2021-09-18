@@ -1,8 +1,8 @@
 #ifndef NYASH_ECHO_H
 #define NYASH_ECHO_H
 
-#include "../utils/lists.h"
+#include "../utils/vector.h"
 
-int echo(list *tokens);
+int echo(vector *tokens);
 
 #endif //NYASH_ECHO_H

@@ -6,7 +6,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 
-int exec_sys_command(list *tokens) {
+int exec_sys_command(vector *tokens) {
     int bg = 0;
     if (strcmp(tokens->arr[tokens->size - 1], "&") == 0) {
         bg = 1;
@@ -14,7 +14,7 @@ int exec_sys_command(list *tokens) {
         tokens->arr[tokens->size - 1] = NULL;
     }
     else {
-        tokens->append(tokens, NULL);
+        tokens->push_back(tokens, NULL);
     }
     pid_t childPid = fork();
     int statusCode = 0;
