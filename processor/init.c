@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include "../commands/history.h"
 
 char *HOME = NULL;
 char *currPath = NULL;
@@ -26,4 +27,6 @@ void initialize_shell(void) {
     strcpy(currPath, HOME);
     strcpy(prevPath, HOME);
     homeLen = strlen(HOME);
+
+    history_init();
 }

@@ -10,6 +10,7 @@
 #include "../commands/pinfo.h"
 #include "../processor/sysCommands.h"
 #include "../commands/repeat.h"
+#include "../commands/history.h"
 
 /*
  * If HOME is a prefix of the current path
@@ -73,6 +74,8 @@ int parse_command(vector *tokens) {
         return pinfo(tokens);
     else if (strcmp(tokens->arr[0], "repeat") == 0)
         return repeat(tokens);
+    else if (strcmp(tokens->arr[0], "history") == 0)
+        return history(tokens);
     else if (strcmp(tokens->arr[0], "exit") == 0) {
         exit(0);
     }

@@ -7,28 +7,47 @@
 #include <string.h>
 #include <limits.h>
 #include "../globals.h"
-#include "../utils/vector.h"
 
-char *homeDir = NULL;
-int historyFd = 0;
+char *historyFilePath = NULL;
+header *historyList = NULL;
+
+#define min(a, b) (((a) < (b)) ? (a) : (b))
 
 int history_init(void) {
-    homeDir = getenv("HOME");
+    char *homeDir = getenv("HOME");
     if (!homeDir) {
         homeDir = getpwuid(getuid())->pw_dir;
         if (!homeDir) {
-            perror("history");
+            perror("history_init");
             return 1;
         }
     }
-    printf("homedir: %s\n", homeDir);
-    char *historyFilePath = (char *) malloc(PATH_MAX + 1);
+    historyFilePath = (char *) malloc(PATH_MAX + 20);
     sprintf(historyFilePath, "%s/.nyash_history", homeDir);
-    historyFd = open(historyFilePath, O_CREAT | O_RDWR, 0600);
-    if (historyFd < 0) {
-        perror("history");
+    int fd = open(historyFilePath, O_CREAT | O_RDONLY, 0600);
+    if (fd < 0) {
+        perror("history_init");
         return 1;
     }
+    close(fd);
+    FILE *historyFile = fopen(historyFilePath, "r");
+    if (historyFile == NULL) {
+        perror("history_init");
+        return 1;
+    }
+    char *charBuffer = NULL;
+    init_list(&historyList);
+    size_t len = 0;
+    size_t nread = 0;
+    while ((nread = getline(&charBuffer, &len, historyFile)) != -1) {
+        charBuffer[nread - 1] = '\0';
+        historyList->insert(historyList, charBuffer);
+        len = 0;
+    }
+
+    fclose(historyFile);
+    free(charBuffer);
+    return 0;
 }
 
 int history(vector *tokens)  {
@@ -52,4 +71,52 @@ int history(vector *tokens)  {
         printf("Argument must be in range [0, 20]");
         return 1;
     }
+    list *curr = historyList->start;
+    for (int i = 0; i < min(printNum, historyList->size); i++) {
+        printf("%s\n", curr->str);
+        curr = curr->next;
+    }
+    return 0;
+}
+
+int insert_into_history(vector *tokens) {
+    int totalSize = 0;
+    for (int i = 0; i < tokens->size; i++) totalSize += strlen(tokens->arr[i]) + 1;
+    char *command = (char *) malloc(totalSize + 1);
+    if (!command) {
+        perror("insert_into_history");
+        return 1;
+    }
+    command[0] = '\0';
+    for (int i = 0; i < tokens->size; i++) {
+        strcat(command, tokens->arr[i]);
+        strcat(command, " ");
+    }
+
+    if (historyList->size == 0) {
+        historyList->insert(historyList, command);
+    }
+    else {
+        list *curr = historyList->start;
+        while (curr->next) curr = curr->next;
+        if (strcmp(command, curr->str) != 0) historyList->insert(historyList, command);
+    }
+    if (historyList->size > 20) historyList->trim(historyList);
+    return 0;
+}
+
+int write_into_history(void) {
+    int fd = open(historyFilePath, O_CREAT | O_TRUNC | O_RDWR, 0600);
+    if (fd < 0) {
+        perror("write_into_history");
+        return 1;
+    }
+    list *curr = historyList->start;
+    while (curr) {
+        write(fd, curr->str, strlen(curr->str));
+        write(fd, "\n", 1);
+        curr = curr->next;
+    }
+    close(fd);
+    return 0;
 }

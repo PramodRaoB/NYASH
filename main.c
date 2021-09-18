@@ -16,9 +16,9 @@ int main(void) {
   initialize_shell();
   int status = 0;
   while (status != -1 && status != 5) {
-    size_t inputLen = 0;
+    size_t bufSize = 0;
     display_prompt(0);
-    if (getline(&inputBuffer, &inputLen, stdin) == -1) {
+    if (getline(&inputBuffer, &bufSize, stdin) == -1) {
       perror("getline()");
       exit(errno);
     }

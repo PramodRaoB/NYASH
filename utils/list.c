@@ -13,6 +13,7 @@ int init_list(header **h) {
     (*h)->start = NULL;
     (*h)->insert = insert_list;
     (*h)->erase = erase_list;
+    (*h)->trim = delete_last;
     return 0;
 }
 
@@ -43,9 +44,31 @@ list *create_node(char *str) {
 int insert_list(header *h, char *str) {
     list *node = create_node(str);
     if (!node) return 1;
-    node->next = h->start;
-    h->start = node;
+    h->size++;
+    list *curr = h->start;
+    node->next = NULL;
+    if (!curr) {
+        h->start = node;
+        return 0;
+    }
+    while (curr->next) curr = curr->next;
+    curr->next = node;
     return 0;
+}
+
+void delete_last(header *h) {
+    if (!h) return;
+    if (h->size == 0) return;
+    if (h->size == 1) {
+        free(h->start->str);
+        free(h->start);
+        h->start = NULL;
+        return;
+    }
+    list *temp = h->start->next;
+    free(h->start->str);
+    free(h->start);
+    h->start = temp;
 }
 
 void erase_list(header *h) {
