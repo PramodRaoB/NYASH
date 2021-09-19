@@ -59,6 +59,7 @@ int insert_list(header *h, char *str) {
 void delete_last(header *h) {
     if (!h) return;
     if (h->size == 0) return;
+    h->size--;
     if (h->size == 1) {
         free(h->start->str);
         free(h->start);

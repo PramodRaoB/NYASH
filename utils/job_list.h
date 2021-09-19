@@ -20,7 +20,7 @@ struct Job {
     job *next;
 };
 
-int init_jobs(jobList **h);
+void init_jobs(jobList **h);
 job *create_job(int pid, char *name);
 int insert_job(jobList *h, int pid, char *name);
 char *find_job(jobList *h, int pid);

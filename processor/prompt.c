@@ -8,6 +8,7 @@
 #include <string.h>
 #include "../globals.h"
 #include "../utils/parse.h"
+#include "../utils/colours.h"
 
 void display_prompt(int status) {
     struct passwd *puid = getpwuid(getuid());
@@ -34,5 +35,7 @@ void display_prompt(int status) {
         exit(errno);
     }
     parse_curr_dir(curr);
-    printf("%s@%s:%s>", userName, systemName, curr);
+    printf(BLUE "%s@%s:%s" RESET, userName, systemName, curr);
+    if (status) printf(RED ">" RESET);
+    else printf(GREEN ">" RESET);
 }

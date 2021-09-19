@@ -45,7 +45,7 @@ int pinfo(vector *tokens) {
     printf("Process Status -- %s", statArgs->arr[2]);
     //apend + if foreground process
     printf(strcmp(statArgs->arr[4], statArgs->arr[7]) == 0 ? "+\n" : "\n");
-    printf("memory -- %s\n", statArgs->arr[22]);
+    printf("memory -- %s bytes\n", statArgs->arr[22]);
 
     char *procExe = (char *) malloc(20);
     if (!procExe) {

@@ -2,12 +2,13 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-int init_jobs(jobList **h) {
+void init_jobs(jobList **h) {
     *h = (jobList *) malloc(sizeof(jobList));
     if (!(*h)) {
         perror("init_jobs");
-        return 1;
+        exit(EXIT_FAILURE);
     }
     (*h)->size = 0;
     (*h)->start = NULL;
@@ -15,7 +16,6 @@ int init_jobs(jobList **h) {
     (*h)->find = find_job;
     (*h)->delete = delete_job;
     (*h)->erase = erase_jobs;
-    return 0;
 }
 
 job *create_job(int pid, char *name) {

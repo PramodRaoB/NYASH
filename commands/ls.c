@@ -56,7 +56,9 @@ int ls_l_info(char *path) {
     }
 
     //permission field
-    printf((S_ISDIR(statBuff.st_mode)) ? "d" : "-");
+    if (S_ISDIR(statBuff.st_mode)) printf("d");
+    else if (S_ISLNK(statBuff.st_mode)) printf("l");
+    else printf("-");
     printf((statBuff.st_mode & S_IRUSR) ? "r" : "-");
     printf((statBuff.st_mode & S_IWUSR) ? "w" : "-");
     printf((statBuff.st_mode & S_IXUSR) ? "x" : "-");
@@ -86,7 +88,12 @@ int ls_l_info(char *path) {
     //printf("%ld ", statBuff.st_mtim.tv_sec);
     char formattedTime[25];
     long timeSinceEpoch = statBuff.st_mtim.tv_sec;
-    strftime(formattedTime, 15, "%b %d %H:%M", localtime(&timeSinceEpoch));
+    time_t currTime = time(NULL);
+    if (currTime - timeSinceEpoch >= 15780000)
+        strftime(formattedTime, 15, "%b %d %Y", localtime(&timeSinceEpoch));
+    else
+        strftime(formattedTime, 15, "%b %d %H:%M", localtime(&timeSinceEpoch));
+
     printf("%s ", formattedTime);
     return 0;
 }

@@ -5,7 +5,6 @@
 #include "utils/parse.h"
 #include "utils/tokenize.h"
 #include "processor/child_handler.h"
-#include <errno.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,8 +25,8 @@ int main(void) {
         size_t bufSize = 0;
         display_prompt(0);
         if (getline(&inputBuffer, &bufSize, stdin) == -1) {
-            perror("getline()");
-            exit(errno);
+            perror("main");
+            exit(EXIT_FAILURE);
         }
         vector *commands = tokenize_input(inputBuffer);
         if (!commands)
@@ -43,8 +42,7 @@ int main(void) {
     signal(SIGTSTP, SIG_DFL);
     signal(SIGCHLD, SIG_DFL);
     if (status == -1) {
-        printf("NYASH: critical error. Exiting\n");
-        return -1;
+        exit(EXIT_FAILURE);
     }
     free(inputBuffer);
     return 0;
