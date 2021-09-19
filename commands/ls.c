@@ -6,6 +6,7 @@
 #include <malloc.h>
 #include "../globals.h"
 #include "../utils/parse.h"
+#include "../utils/colours.h"
 #include <pwd.h>
 #include <grp.h>
 #include <errno.h>
@@ -14,7 +15,7 @@
 int print_total(char *path, int flagA) {
     DIR *fDir = opendir(path);
     if (fDir == NULL) {
-        perror("opendir()");
+        perror("ls");
         return 1;
     }
     long total = 0;
@@ -27,23 +28,30 @@ int print_total(char *path, int flagA) {
         if (!flagA && entry->d_name[0] == '.') continue;
         sprintf(filePath, "%s/%s", path, entry->d_name);
         if (filePath == NULL) {
-            perror("sprintf()");
+            perror("ls");
+            closedir(fDir);
+            free(filePath);
             return 1;
         }
 
         if (lstat(filePath, &statBuff) == -1) {
-            perror("stat()");
+            perror("ls");
+            closedir(fDir);
+            free(filePath);
             return 1;
         }
 
         total += statBuff.st_blocks;
     }
     if (errno != 0) {
-        perror("readdir()");
+        perror("ls");
+        closedir(fDir);
+        free(filePath);
         return 1;
     }
     printf("Total: %ld\n", total / 2);
     closedir(fDir);
+    free(filePath);
     return 0;
 }
 
@@ -104,12 +112,14 @@ int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
     struct stat statBuff;
     if (lstat(processedPath, &statBuff) == -1) {
         perror(processedPath);
+        free(processedPath);
         return 1;
     }
     if (!S_ISDIR(statBuff.st_mode)) {
         if (flagL && ls_l_info(path)) return 1;
         printf("%s",path);
         printf(flagL ? "\n" : " ");
+        free(processedPath);
         return 0;
     }
     if (multipleDirs) {
@@ -119,33 +129,46 @@ int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
     if (flagL && print_total(processedPath, flagA)) return 1;
     DIR *fDir = opendir(processedPath);
     if (fDir == NULL) {
-        perror("opendir()");
+        perror("ls");
+        free(processedPath);
         return 1;
     }
     struct dirent *entry = NULL;
     char *filePath = (char *) malloc(PATH_MAX);
+    if (!filePath) {
+        perror("ls");
+        free(processedPath);
+        free(filePath);
+        return 1;
+    }
     errno = 0;
 
     while ((entry = readdir(fDir))) {
         if (!flagA && entry->d_name[0] == '.') continue;
         sprintf(filePath, "%s/%s", processedPath, entry->d_name);
-        if (filePath == NULL) {
-            perror("sprintf()");
-            return 1;
-        }
 
         if (flagL && ls_l_info(filePath)) return 1;
-
-        printf("%s", entry->d_name);
+        if (lstat(filePath, &statBuff) == -1) {
+            perror(filePath);
+            free(processedPath);
+            free(filePath);
+            return 1;
+        }
+        if (S_ISDIR(statBuff.st_mode)) printf(BLUE "%s" RESET, entry->d_name);
+        else if (S_ISLNK(statBuff.st_mode)) printf(GREEN "%s" RESET, entry->d_name);
+        else printf(RESET "%s", entry->d_name);
         printf(flagL ? "\n" : " ");
     }
     if (errno != 0) {
-        perror("readdir()");
+        perror("ls");
+        free(processedPath);
+        free(filePath);
         return 1;
     }
     if (multipleDirs) printf("\n");
     closedir(fDir);
     free(processedPath);
+    free(filePath);
     return 0;
 }
 

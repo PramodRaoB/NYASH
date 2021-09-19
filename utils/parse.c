@@ -51,17 +51,10 @@ char *expand_path(char *path) {
     return finalPath;
 }
 
-/*
- * given a vector of tokens for a command, parses it and
- * calls the right function
- * return 1 -> unrecognized command / syntax error
- * return 2 -> parsing error
- * return -1 -> critical error
- * */
 int parse_command(vector *tokens) {
-    if (tokens == NULL) return -1;
-    if (tokens->size == 0) return 2;
-    if (tokens->arr[0] == NULL) return 2;
+    if (tokens == NULL) return 1;
+    if (tokens->size == 0) return 1;
+    if (tokens->arr[0] == NULL) return 1;
     if (strcmp(tokens->arr[0], "pwd") == 0)
         return pwd(tokens);
     else if (strcmp(tokens->arr[0], "echo") == 0)
@@ -77,11 +70,9 @@ int parse_command(vector *tokens) {
     else if (strcmp(tokens->arr[0], "history") == 0)
         return history(tokens);
     else if (strcmp(tokens->arr[0], "exit") == 0) {
-        exit(0);
+        return -1;
     }
     else {
-//        printf("%s: Unrecognized command\n", tokens->arr[0]);
-//        return 1;
         return exec_sys_command(tokens);
     }
 }

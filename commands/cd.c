@@ -17,12 +17,20 @@ int cd(vector *tokens) {
     bool prev = false;
     if (tokens->size == 1) {
         target = (char *) malloc(strlen(HOME) + 1);
+        if (!target) {
+            perror("cd");
+            return 1;
+        }
         strcpy(target, HOME);
     }
     else {
         if (tokens->arr[1] && strcmp(tokens->arr[1], "-") == 0) {
             prev = true;
             target = (char *) malloc(strlen(prevPath) + 1);
+            if (!target) {
+                perror("cd");
+                return 1;
+            }
             strcpy(target, prevPath);
         }
         else {
@@ -39,13 +47,14 @@ int cd(vector *tokens) {
             strcpy(temp, currPath);
             parse_curr_dir(temp);
             printf("%s\n", temp);
+            free(temp);
         }
         free(target);
         return 0;
     }
     else {
         printf("cd: Invalid target\n");
-        if (target) free(target);
+        free(target);
         return 1;
     }
 }

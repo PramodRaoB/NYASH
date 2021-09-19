@@ -20,26 +20,33 @@ int pinfo(vector *tokens) {
     //PID_MAX_LIMIT is 2^22 ~ 4 million => 6 byte string
     char *procStat = (char *) malloc(20);
     if (!procStat) {
-        perror("malloc()");
+        perror("pinfo");
         return 1;
     }
     sprintf(procStat, "/proc/%d/stat", pid);
     FILE *status = fopen(procStat, "r");
     if (status == NULL) {
         printf("pinfo: Error process not found\n");
+        free(procStat);
         return 1;
     }
 
     char *data = NULL;
     size_t dataSize = 0;
     if (getline(&data, &dataSize, status) == -1) {
-        perror("getline()");
+        perror("pinfo");
+        free(data);
+        free(procStat);
         return 1;
     }
     fclose(status);
 
     vector *statArgs = tokenize_command(data);
-    if (statArgs == NULL) return 1;
+    if (statArgs == NULL) {
+        free(data);
+        free(procStat);
+        return 1;
+    }
     //man 5 proc
     printf("pid -- %s\n", statArgs->arr[0]);
     printf("Process Status -- %s", statArgs->arr[2]);
@@ -49,25 +56,38 @@ int pinfo(vector *tokens) {
 
     char *procExe = (char *) malloc(20);
     if (!procExe) {
-        perror("malloc()");
+        perror("pinfo");
+        statArgs->erase(statArgs);
+        free(data);
+        free(procStat);
         return 1;
     }
     sprintf(procExe, "/proc/%d/exe", pid);
     char *exePath = (char *) malloc(PATH_MAX + 1);
     if (!exePath) {
-        perror("malloc()");
+        perror("pinfo");
+        free(procExe);
+        statArgs->erase(statArgs);
+        free(data);
+        free(procStat);
         return 1;
     }
     size_t exeSize = PATH_MAX + 1;
     ssize_t bytesRead = readlink(procExe, exePath, exeSize);
     if (bytesRead == -1) {
         perror("readlink");
-        return 0;
+        free(exePath);
+        free(procExe);
+        statArgs->erase(statArgs);
+        free(data);
+        free(procStat);
+        return 1;
     }
     exePath[bytesRead] = '\0';
     parse_curr_dir(exePath);
     printf("Executable Path -- %s\n", exePath);
     free(exePath);
+    free(procExe);
 
     statArgs->erase(statArgs);
     free(data);

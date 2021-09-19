@@ -9,10 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//TODO: error-handling. mem-leak
-//TODO: colors
-//TODO: ls year thing
-//TODO: Arrow-key history?
+//TODO: Arrow-key history
 
 int main(void) {
     char *inputBuffer = NULL;
@@ -21,9 +18,9 @@ int main(void) {
     signal(SIGTSTP, SIG_IGN);
     initialize_shell();
     int status = 0;
-    while (status != -1 && status != 5) {
+    while (status != -1) {
         size_t bufSize = 0;
-        display_prompt(0);
+        display_prompt(status);
         if (getline(&inputBuffer, &bufSize, stdin) == -1) {
             perror("main");
             exit(EXIT_FAILURE);
@@ -37,13 +34,18 @@ int main(void) {
             tokens->erase(tokens);
         }
         commands->erase(commands);
+        free(inputBuffer);
+        inputBuffer = NULL;
     }
     signal(SIGINT, SIG_DFL);
     signal(SIGTSTP, SIG_DFL);
     signal(SIGCHLD, SIG_DFL);
-    if (status == -1) {
-        exit(EXIT_FAILURE);
-    }
     free(inputBuffer);
-    return 0;
+    free(HOME);
+    free(currPath);
+    free(prevPath);
+    free(historyFilePath);
+    historyList->erase(historyList);
+    jobs->erase(jobs);
+    exit(EXIT_SUCCESS);
 }

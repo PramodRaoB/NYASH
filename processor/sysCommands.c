@@ -20,7 +20,7 @@ int exec_sys_command(vector *tokens) {
     pid_t childPid = fork();
     int statusCode = 0;
     if (childPid == -1) {
-        perror("fork()");
+        perror("fork");
         return 1;
     }
     if (childPid == 0) {
@@ -33,7 +33,13 @@ int exec_sys_command(vector *tokens) {
         }
         if (execvp(tokens->arr[0], tokens->arr) == -1) {
             printf("NYASH: command not found: %s\n", tokens->arr[0]);
-            exit(1);
+            free(HOME);
+            free(currPath);
+            free(prevPath);
+            free(historyFilePath);
+            historyList->erase(historyList);
+            jobs->erase(jobs);
+            exit(EXIT_FAILURE);
         }
     }
     else {

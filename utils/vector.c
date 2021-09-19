@@ -7,15 +7,15 @@
 void init_vector(vector **newList) {
     *newList = (vector *) malloc(sizeof(vector));
     if (!(*newList)) {
-        perror("malloc()");
-        exit(errno);
+        perror("malloc");
+        exit(EXIT_FAILURE);
     }
     (*newList)->size = 0;
     (*newList)->capacity = 1;
     (*newList)->arr = (char **)malloc(sizeof(char *));
     if ((*newList)->arr == NULL) {
         perror("malloc");
-        exit(errno);
+        exit(EXIT_FAILURE);
     }
     (*newList)->push_back = &vector_push_back;
     (*newList)->erase = &erase_vector;

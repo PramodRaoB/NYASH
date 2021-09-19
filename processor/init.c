@@ -37,6 +37,8 @@ void initialize_shell(void) {
     strcpy(prevPath, HOME);
     homeLen = strlen(HOME);
 
-    history_init();
+    if (history_init()) {
+        exit(EXIT_FAILURE);
+    }
     init_jobs(&jobs);
 }

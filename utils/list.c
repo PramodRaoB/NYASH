@@ -77,6 +77,7 @@ void erase_list(header *h) {
     list *temp = h->start;
     while (temp != NULL) {
         list *next = temp->next;
+        free(temp->str);
         free (temp);
         temp = next;
     }

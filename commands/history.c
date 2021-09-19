@@ -19,33 +19,38 @@ int history_init(void) {
         homeDir = getpwuid(getuid())->pw_dir;
         if (!homeDir) {
             perror("history_init");
-            exit(EXIT_FAILURE);
+            return 1;
         }
     }
     historyFilePath = (char *) malloc(PATH_MAX + 20);
     if (!historyFilePath) {
         perror("history_init");
-        exit(EXIT_FAILURE);
+        return 1;
     }
     sprintf(historyFilePath, "%s/.nyash_history", homeDir);
     int fd = open(historyFilePath, O_CREAT | O_RDONLY, 0600);
     if (fd < 0) {
         perror("history_init");
-        exit(EXIT_FAILURE);
+        return 1;
     }
     close(fd);
     FILE *historyFile = fopen(historyFilePath, "r");
     if (historyFile == NULL) {
         perror("history_init");
-        exit(EXIT_FAILURE);
+        return 1;
     }
     char *charBuffer = NULL;
-    init_list(&historyList);
+    if (init_list(&historyList)) {
+        fclose(historyFile);
+        return 1;
+    }
     size_t len = 0;
     size_t nread = 0;
     while ((nread = getline(&charBuffer, &len, historyFile)) != -1) {
         charBuffer[nread - 1] = '\0';
         historyList->insert(historyList, charBuffer);
+        free(charBuffer);
+        charBuffer = NULL;
         len = 0;
     }
 
@@ -111,6 +116,7 @@ int insert_into_history(vector *tokens) {
         if (strcmp(command, curr->str) != 0) historyList->insert(historyList, command);
     }
     if (historyList->size > 20) historyList->trim(historyList);
+    free(command);
     return 0;
 }
 

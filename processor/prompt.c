@@ -13,29 +13,32 @@
 void display_prompt(int status) {
     struct passwd *puid = getpwuid(getuid());
     if (!puid) {
-        perror("getpwuid() error");
-        exit(errno);
+        perror("display_prompt");
+        exit(EXIT_FAILURE);
     }
     char *userName = puid->pw_name;
     if (!userName) {
-        perror("getpwuid() error");
-        exit(errno);
+        perror("display_prompt");
+        exit(EXIT_FAILURE);
     }
     char *systemName = (char *) malloc(HOST_NAME_MAX);
     gethostname(systemName, HOST_NAME_MAX);
     if (!systemName) {
-        perror("gethostname()");
-        exit(errno);
+        perror("display_prompt");
+        exit(EXIT_FAILURE);
     }
 
     char *curr = (char *) malloc(strlen(currPath) + 1);
     strcpy(curr, currPath);
     if (!curr) {
-        perror("strcpy()");
-        exit(errno);
+        perror("display_prompt");
+        free(systemName);
+        exit(EXIT_FAILURE);
     }
     parse_curr_dir(curr);
     printf(BLUE "%s@%s:%s" RESET, userName, systemName, curr);
     if (status) printf(RED ">" RESET);
     else printf(GREEN ">" RESET);
+    free(systemName);
+    free(curr);
 }
