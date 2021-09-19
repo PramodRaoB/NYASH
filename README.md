@@ -3,7 +3,9 @@ NYASH: Not Your Average Shell - A simple shell written in C for Linux systems
 ---
 
 ## Usage:
-
+Run the following commands
+1. `make`
+2. ./nyash
 ---
 
 ## Features:
