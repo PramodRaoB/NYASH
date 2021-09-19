@@ -2,6 +2,7 @@
 #define GLOBALS_H
 #include <stddef.h>
 #include "utils/list.h"
+#include "utils/job_list.h"
 
 extern char *HOME;
 extern char *currPath;
@@ -10,5 +11,7 @@ extern size_t homeLen;
 
 extern char *historyFilePath;
 extern header *historyList;
+
+extern jobList *jobs;
 
 #endif

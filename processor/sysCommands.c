@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include "../globals.h"
 
 int exec_sys_command(vector *tokens) {
     int bg = 0;
@@ -38,6 +39,7 @@ int exec_sys_command(vector *tokens) {
     else {
         if (bg) {
             printf("%d\n", childPid);
+            jobs->insert(jobs, childPid, tokens->arr[0]);
             return 0;
         }
         signal(SIGTTOU, SIG_IGN);
