@@ -12,8 +12,6 @@ vector *tokenize_command(char *inputBuffer) {
         tokens->push_back(tokens, nextToken);
         nextToken = strtok_r(NULL, " \t\n", &savePtr);
     }
-    insert_into_history(tokens);
-    write_into_history();
     return tokens;
 }
 
@@ -27,5 +25,7 @@ vector *tokenize_input(char *inputBuffer) {
         commands->push_back(commands, nextCommand);
         nextCommand = strtok_r(NULL, ";\n", &savePtr);
     }
+    insert_into_history(commands);
+    write_into_history();
     return commands;
 }
