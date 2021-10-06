@@ -3,22 +3,21 @@
 #include "../globals.h"
 
 void child_handler(int signum) {
-    int waitStatus = 0, statusCode = 0;
+    int waitStatus = 0;
     pid_t childPid;
     while ((childPid = waitpid(-1, &waitStatus, WNOHANG | WUNTRACED | WCONTINUED)) > 0) {
-        char *childName = jobs->find(jobs, childPid);
-        if (!childName) continue;
+        job *curr = jobs->proc(jobs, childPid);
+        if (!curr) continue;
         if (WIFEXITED(waitStatus)) {
-            printf("%s with pid %d exited normally\n", childName, childPid);
+            printf(GREEN "[%d] %s with pid [%d] exited normally\n" RESET, curr->jobNumber, curr->name, curr->pid);
             jobs->delete(jobs, childPid);
         } else if (WIFSTOPPED(waitStatus)) {
-            printf("%s with pid %d suspended normally\n", childName, childPid);
+            printf("[%d] %s with pid [%d] suspended normally\n", curr->jobNumber, curr->name, curr->pid);
         } else if (WIFCONTINUED(waitStatus)) {
-            printf("%s with pid %d continued normally\n", childName, childPid);
+            printf("[%d] %s with pid [%d] continued normally\n", curr->jobNumber, curr->name, curr->pid);
         } else {
-            printf("%s with pid %d exited abnormally\n", childName, childPid);
+            printf(RED "[%d] %s with pid [%d] exited abnormally\n" RESET, curr->jobNumber, curr->name, curr->pid);
             jobs->delete(jobs, childPid);
-            statusCode = 1;
         }
     }
 }

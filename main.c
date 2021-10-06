@@ -22,9 +22,9 @@ int main(void) {
     while (status != -1) {
         size_t bufSize = 0;
         display_prompt(status);
-        if (getline(&inputBuffer, &bufSize, stdin) == -1) {
-            perror("main");
-            exit(EXIT_FAILURE);
+        if (getline(&inputBuffer, &bufSize, stdin) == EOF) {
+            status = -1;
+            break;
         }
         vector *commands = tokenize_input(inputBuffer);
         if (!commands)

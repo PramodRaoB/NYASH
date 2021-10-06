@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+/home/jade/CLionProjects/NYASH/commands/bg.c
+bg.h
+/home/jade/CLionProjects/NYASH/commands/bg.h
+stdio.h
+-
+../globals.h
+/home/jade/CLionProjects/NYASH/globals.h
+string.h
+-
+stdlib.h
+-
+errno.h
+-
+signal.h
+-
+
+/home/jade/CLionProjects/NYASH/commands/bg.h
+../utils/vector.h
+/home/jade/CLionProjects/NYASH/utils/vector.h
+
 /home/jade/CLionProjects/NYASH/commands/cd.c
 cd.h
 /home/jade/CLionProjects/NYASH/commands/cd.h
@@ -31,6 +51,30 @@ limits.h
 /home/jade/CLionProjects/NYASH/utils/vector.h
 
 /home/jade/CLionProjects/NYASH/commands/echo.h
+../utils/vector.h
+/home/jade/CLionProjects/NYASH/utils/vector.h
+
+/home/jade/CLionProjects/NYASH/commands/fg.c
+fg.h
+/home/jade/CLionProjects/NYASH/commands/fg.h
+stdio.h
+-
+../globals.h
+/home/jade/CLionProjects/NYASH/globals.h
+string.h
+-
+stdlib.h
+-
+errno.h
+-
+signal.h
+-
+unistd.h
+-
+sys/wait.h
+-
+
+/home/jade/CLionProjects/NYASH/commands/fg.h
 ../utils/vector.h
 /home/jade/CLionProjects/NYASH/utils/vector.h
 
@@ -135,6 +179,26 @@ stdio.h
 /home/jade/CLionProjects/NYASH/utils/vector.h
 
 /home/jade/CLionProjects/NYASH/commands/repeat.h
+../utils/vector.h
+/home/jade/CLionProjects/NYASH/utils/vector.h
+
+/home/jade/CLionProjects/NYASH/commands/sig.c
+sig.h
+/home/jade/CLionProjects/NYASH/commands/sig.h
+stdio.h
+-
+../globals.h
+/home/jade/CLionProjects/NYASH/globals.h
+string.h
+-
+stdlib.h
+-
+errno.h
+-
+signal.h
+-
+
+/home/jade/CLionProjects/NYASH/commands/sig.h
 ../utils/vector.h
 /home/jade/CLionProjects/NYASH/utils/vector.h
 
@@ -303,6 +367,12 @@ fcntl.h
 /home/jade/CLionProjects/NYASH/commands/history.h
 ../commands/jobs.h
 /home/jade/CLionProjects/NYASH/commands/jobs.h
+../commands/sig.h
+/home/jade/CLionProjects/NYASH/commands/sig.h
+../commands/bg.h
+/home/jade/CLionProjects/NYASH/commands/bg.h
+../commands/fg.h
+/home/jade/CLionProjects/NYASH/commands/fg.h
 
 /home/jade/CLionProjects/NYASH/utils/parse.h
 vector.h

@@ -51,23 +51,20 @@ int exec_sys_command(vector *tokens) {
         signal(SIGTTOU, SIG_IGN);
         signal(SIGTTIN, SIG_IGN);
         tcsetpgrp(STDIN_FILENO, childPid);
-//        if (tcsetpgrp(STDIN_FILENO, childPid) == -1) {
-//            perror("tcsetpgrpl");
-//            signal(SIGTTOU, SIG_DFL);
-//            return 1;
-//        }
+
         waitpid(childPid, &statusCode, WUNTRACED);
 
         tcsetpgrp(STDIN_FILENO, getpgrp());
-//        if (tcsetpgrp(STDIN_FILENO, getpgrp()) == -1) {
-//            perror("tcsetpgrp");
-//            signal(SIGTTOU, SIG_DFL);
-//            signal(SIGTTIN, SIG_DFL);
-//            return 1;
-//        }
+
         int currStatus = 0;
         if (!WIFSTOPPED(statusCode)) jobs->delete(jobs, childPid);
-        else currStatus = 1;
+        else {
+            if (WSTOPSIG(statusCode) == SIGTSTP) {
+                job *curr = jobs->proc(jobs, childPid);
+                printf("[%d] suspended %s [%d]\n", curr->jobNumber, curr->name, curr->pid);
+            }
+            currStatus = 1;
+        }
         if (!WIFEXITED(statusCode)) currStatus = 1;
         signal(SIGTTOU, SIG_DFL);
         signal(SIGTTIN, SIG_DFL);
