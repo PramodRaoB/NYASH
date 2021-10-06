@@ -17,9 +17,9 @@ void init_vector(vector **newList) {
         perror("malloc");
         exit(EXIT_FAILURE);
     }
-    (*newList)->push_back = &vector_push_back;
-    (*newList)->erase = &erase_vector;
-    (*newList)->clear = &clear_vector;
+    (*newList)->push_back = vector_push_back;
+    (*newList)->erase = erase_vector;
+    (*newList)->clear = clear_vector;
 }
 
 void vector_push_back(vector *l, char *str) {

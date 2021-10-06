@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include "utils/list.h"
 #include "utils/job_list.h"
+#include "./utils/colours.h"
 
 extern char *HOME;
 extern char *currPath;

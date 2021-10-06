@@ -1,8 +1,8 @@
 #include "job_list.h"
-#include <malloc.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../globals.h"
 
 void init_jobs(jobList **h) {
     *h = (jobList *) malloc(sizeof(jobList));
@@ -16,6 +16,7 @@ void init_jobs(jobList **h) {
     (*h)->find = find_job;
     (*h)->delete = delete_job;
     (*h)->erase = erase_jobs;
+    (*h)->proc = proc_job;
 }
 
 job *create_job(int pid, char *name) {
@@ -37,6 +38,7 @@ job *create_job(int pid, char *name) {
         return NULL;
     }
     newNode->pid = pid;
+    newNode->jobNumber = currJob++;
     return newNode;
 }
 
@@ -65,16 +67,28 @@ char *find_job(jobList *h, int pid) {
     return NULL;
 }
 
+job *proc_job(jobList *h, int pid) {
+    if (!h) return NULL;
+    job *curr = h->start;
+    while (curr) {
+        if (curr->pid == pid) return curr;
+        curr = curr->next;
+    }
+    return NULL;
+}
+
 int delete_job(jobList *h, int pid) {
     if (!h) return 1;
+    if (h->size == 0) return 1;
     if (pid == h->start->pid) {
         job *temp = h->start;
         h->start = h->start->next;
         free(temp->name);
         free(temp);
         h->size--;
+        return 0;
     }
-    job *curr = h->start;
+    job *curr = h->start->next;
     job *prev = h->start;
     while (curr) {
         if (pid == curr->pid) {
@@ -83,6 +97,7 @@ int delete_job(jobList *h, int pid) {
             free(curr);
             return 0;
         }
+        prev = curr;
         curr = curr->next;
     }
     return 1;

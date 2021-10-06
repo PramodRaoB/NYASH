@@ -10,6 +10,7 @@ struct JobList {
 
     int (*insert)(jobList *, int, char *);
     char *(*find)(jobList *, int);
+    job *(*proc)(jobList *, int);
     int (*delete)(jobList *, int);
     void (*erase)(jobList *);
 };
@@ -25,6 +26,7 @@ void init_jobs(jobList **h);
 job *create_job(int pid, char *name);
 int insert_job(jobList *h, int pid, char *name);
 char *find_job(jobList *h, int pid);
+job *proc_job(jobList *h, int pid);
 int delete_job(jobList *h, int pid);
 void erase_jobs(jobList *h);
 

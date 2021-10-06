@@ -4,4 +4,6 @@
 #include "../utils/vector.h"
 #include "../globals.h"
 
+int _jobs(vector *tokens);
+
 #endif //NYASH_JOBS_H

@@ -13,8 +13,9 @@
 #include "../processor/sysCommands.h"
 #include "../commands/repeat.h"
 #include "../commands/history.h"
+#include "../commands/jobs.h"
 
-char *builtinCommands[] = {"cd", "echo", "history", "ls", "pinfo", "pwd", "repeat", "exit"};
+char *builtinCommands[] = {"cd", "echo", "history", "ls", "pinfo", "pwd", "repeat", "_jobs", "exit"};
 int is_builtin(vector *tokens) {
     if (!tokens) return 0;
     if (tokens->size == 0) return 0;
@@ -202,6 +203,8 @@ int execute_command(vector *tokens, int usePipe) {
         currStatus = repeat(tokens);
     else if (strcmp(tokens->arr[0], "history") == 0)
         currStatus = history(tokens);
+    else if (strcmp(tokens->arr[0], "jobs") == 0)
+        currStatus = _jobs(tokens);
     else if (strcmp(tokens->arr[0], "exit") == 0)
         currStatus = -1;
     else

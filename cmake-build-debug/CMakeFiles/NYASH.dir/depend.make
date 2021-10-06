@@ -5,6 +5,7 @@ CMakeFiles/NYASH.dir/commands/cd.c.o: \
  ../commands/cd.c \
  ../commands/cd.h \
  ../globals.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/parse.h \
@@ -17,15 +18,19 @@ CMakeFiles/NYASH.dir/commands/history.c.o: \
  ../commands/history.c \
  ../commands/history.h \
  ../globals.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/vector.h
 CMakeFiles/NYASH.dir/commands/jobs.c.o: \
  ../commands/jobs.c \
  ../commands/jobs.h \
+ ../commands/pinfo.h \
  ../globals.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
+ ../utils/tokenize.h \
  ../utils/vector.h
 CMakeFiles/NYASH.dir/commands/ls.c.o: \
  ../commands/ls.c \
@@ -46,6 +51,7 @@ CMakeFiles/NYASH.dir/commands/pwd.c.o: \
  ../commands/pwd.c \
  ../commands/pwd.h \
  ../globals.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/parse.h \
@@ -61,6 +67,7 @@ CMakeFiles/NYASH.dir/main.c.o: \
  ../processor/child_handler.h \
  ../processor/init.h \
  ../processor/prompt.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/parse.h \
@@ -70,6 +77,7 @@ CMakeFiles/NYASH.dir/processor/child_handler.c.o: \
  ../globals.h \
  ../processor/child_handler.c \
  ../processor/child_handler.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h
 CMakeFiles/NYASH.dir/processor/init.c.o: \
@@ -77,6 +85,7 @@ CMakeFiles/NYASH.dir/processor/init.c.o: \
  ../globals.h \
  ../processor/init.c \
  ../processor/init.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/vector.h
@@ -93,12 +102,16 @@ CMakeFiles/NYASH.dir/processor/sysCommands.c.o: \
  ../globals.h \
  ../processor/sysCommands.c \
  ../processor/sysCommands.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/vector.h
 CMakeFiles/NYASH.dir/utils/job_list.c.o: \
+ ../globals.h \
+ ../utils/colours.h \
  ../utils/job_list.c \
- ../utils/job_list.h
+ ../utils/job_list.h \
+ ../utils/list.h
 CMakeFiles/NYASH.dir/utils/list.c.o: \
  ../utils/list.c \
  ../utils/list.h
@@ -106,12 +119,14 @@ CMakeFiles/NYASH.dir/utils/parse.c.o: \
  ../commands/cd.h \
  ../commands/echo.h \
  ../commands/history.h \
+ ../commands/jobs.h \
  ../commands/ls.h \
  ../commands/pinfo.h \
  ../commands/pwd.h \
  ../commands/repeat.h \
  ../globals.h \
  ../processor/sysCommands.h \
+ ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/parse.c \

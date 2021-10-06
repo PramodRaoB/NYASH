@@ -5,6 +5,7 @@ CMakeFiles/NYASH.dir/commands/cd.c.o
  /home/jade/CLionProjects/NYASH/commands/cd.c
  /home/jade/CLionProjects/NYASH/commands/cd.h
  /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/parse.h
@@ -17,15 +18,19 @@ CMakeFiles/NYASH.dir/commands/history.c.o
  /home/jade/CLionProjects/NYASH/commands/history.c
  /home/jade/CLionProjects/NYASH/commands/history.h
  /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
 CMakeFiles/NYASH.dir/commands/jobs.c.o
  /home/jade/CLionProjects/NYASH/commands/jobs.c
  /home/jade/CLionProjects/NYASH/commands/jobs.h
+ /home/jade/CLionProjects/NYASH/commands/pinfo.h
  /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
+ /home/jade/CLionProjects/NYASH/utils/tokenize.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
 CMakeFiles/NYASH.dir/commands/ls.c.o
  /home/jade/CLionProjects/NYASH/commands/ls.c
@@ -46,6 +51,7 @@ CMakeFiles/NYASH.dir/commands/pwd.c.o
  /home/jade/CLionProjects/NYASH/commands/pwd.c
  /home/jade/CLionProjects/NYASH/commands/pwd.h
  /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/parse.h
@@ -61,6 +67,7 @@ CMakeFiles/NYASH.dir/main.c.o
  /home/jade/CLionProjects/NYASH/processor/child_handler.h
  /home/jade/CLionProjects/NYASH/processor/init.h
  /home/jade/CLionProjects/NYASH/processor/prompt.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/parse.h
@@ -70,6 +77,7 @@ CMakeFiles/NYASH.dir/processor/child_handler.c.o
  /home/jade/CLionProjects/NYASH/globals.h
  /home/jade/CLionProjects/NYASH/processor/child_handler.c
  /home/jade/CLionProjects/NYASH/processor/child_handler.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
 CMakeFiles/NYASH.dir/processor/init.c.o
@@ -77,6 +85,7 @@ CMakeFiles/NYASH.dir/processor/init.c.o
  /home/jade/CLionProjects/NYASH/globals.h
  /home/jade/CLionProjects/NYASH/processor/init.c
  /home/jade/CLionProjects/NYASH/processor/init.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
@@ -93,12 +102,16 @@ CMakeFiles/NYASH.dir/processor/sysCommands.c.o
  /home/jade/CLionProjects/NYASH/globals.h
  /home/jade/CLionProjects/NYASH/processor/sysCommands.c
  /home/jade/CLionProjects/NYASH/processor/sysCommands.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
 CMakeFiles/NYASH.dir/utils/job_list.c.o
+ /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.c
  /home/jade/CLionProjects/NYASH/utils/job_list.h
+ /home/jade/CLionProjects/NYASH/utils/list.h
 CMakeFiles/NYASH.dir/utils/list.c.o
  /home/jade/CLionProjects/NYASH/utils/list.c
  /home/jade/CLionProjects/NYASH/utils/list.h
@@ -106,12 +119,14 @@ CMakeFiles/NYASH.dir/utils/parse.c.o
  /home/jade/CLionProjects/NYASH/commands/cd.h
  /home/jade/CLionProjects/NYASH/commands/echo.h
  /home/jade/CLionProjects/NYASH/commands/history.h
+ /home/jade/CLionProjects/NYASH/commands/jobs.h
  /home/jade/CLionProjects/NYASH/commands/ls.h
  /home/jade/CLionProjects/NYASH/commands/pinfo.h
  /home/jade/CLionProjects/NYASH/commands/pwd.h
  /home/jade/CLionProjects/NYASH/commands/repeat.h
  /home/jade/CLionProjects/NYASH/globals.h
  /home/jade/CLionProjects/NYASH/processor/sysCommands.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/parse.c

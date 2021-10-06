@@ -26,7 +26,7 @@ int exec_sys_command(vector *tokens) {
     if (childPid == 0) {
         //child code
         signal(SIGINT, SIG_DFL);
-        signal(SIGSTOP, SIG_DFL);
+        signal(SIGTSTP, SIG_DFL);
         if (setpgid(0, 0) == -1) {
             perror("setpgid");
             return 1;
@@ -43,9 +43,9 @@ int exec_sys_command(vector *tokens) {
         }
     }
     else {
+        jobs->insert(jobs, childPid, tokens->arr[0]);
         if (bg) {
             printf("%d\n", childPid);
-            jobs->insert(jobs, childPid, tokens->arr[0]);
             return 0;
         }
         signal(SIGTTOU, SIG_IGN);
@@ -65,8 +65,13 @@ int exec_sys_command(vector *tokens) {
 //            signal(SIGTTIN, SIG_DFL);
 //            return 1;
 //        }
+        int currStatus = 0;
+        if (!WIFSTOPPED(statusCode)) jobs->delete(jobs, childPid);
+        else currStatus = 1;
+        if (!WIFEXITED(statusCode)) currStatus = 1;
         signal(SIGTTOU, SIG_DFL);
         signal(SIGTTIN, SIG_DFL);
+        return currStatus;
     }
     return 0;
 }
