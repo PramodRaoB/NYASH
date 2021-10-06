@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/jade/CLionProjects/NYASH/commands/cd.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/cd.c.o"
   "/home/jade/CLionProjects/NYASH/commands/echo.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/echo.c.o"
   "/home/jade/CLionProjects/NYASH/commands/history.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/history.c.o"
+  "/home/jade/CLionProjects/NYASH/commands/jobs.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/jobs.c.o"
   "/home/jade/CLionProjects/NYASH/commands/ls.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/ls.c.o"
   "/home/jade/CLionProjects/NYASH/commands/pinfo.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/pinfo.c.o"
   "/home/jade/CLionProjects/NYASH/commands/pwd.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/pwd.c.o"

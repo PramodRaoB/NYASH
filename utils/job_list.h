@@ -17,6 +17,7 @@ struct JobList {
 struct Job {
     int pid;
     char *name;
+    int jobNumber;
     job *next;
 };
 

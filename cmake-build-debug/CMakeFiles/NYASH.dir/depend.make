@@ -20,6 +20,13 @@ CMakeFiles/NYASH.dir/commands/history.c.o: \
  ../utils/job_list.h \
  ../utils/list.h \
  ../utils/vector.h
+CMakeFiles/NYASH.dir/commands/jobs.c.o: \
+ ../commands/jobs.c \
+ ../commands/jobs.h \
+ ../globals.h \
+ ../utils/job_list.h \
+ ../utils/list.h \
+ ../utils/vector.h
 CMakeFiles/NYASH.dir/commands/ls.c.o: \
  ../commands/ls.c \
  ../commands/ls.h \

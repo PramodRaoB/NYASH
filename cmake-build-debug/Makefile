@@ -201,6 +201,30 @@ commands/history.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/history.c.s
 .PHONY : commands/history.c.s
 
+commands/jobs.o: commands/jobs.c.o
+.PHONY : commands/jobs.o
+
+# target to build an object file
+commands/jobs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/jobs.c.o
+.PHONY : commands/jobs.c.o
+
+commands/jobs.i: commands/jobs.c.i
+.PHONY : commands/jobs.i
+
+# target to preprocess a source file
+commands/jobs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/jobs.c.i
+.PHONY : commands/jobs.c.i
+
+commands/jobs.s: commands/jobs.c.s
+.PHONY : commands/jobs.s
+
+# target to generate assembly for a file
+commands/jobs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/jobs.c.s
+.PHONY : commands/jobs.c.s
+
 commands/ls.o: commands/ls.c.o
 .PHONY : commands/ls.o
 
@@ -555,6 +579,9 @@ help:
 	@echo "... commands/history.o"
 	@echo "... commands/history.i"
 	@echo "... commands/history.s"
+	@echo "... commands/jobs.o"
+	@echo "... commands/jobs.i"
+	@echo "... commands/jobs.s"
 	@echo "... commands/ls.o"
 	@echo "... commands/ls.i"
 	@echo "... commands/ls.s"

@@ -12,6 +12,7 @@ char *currPath = NULL;
 char *prevPath = NULL;
 size_t homeLen = 0;
 jobList *jobs = NULL;
+int currJob = 1;
 
 void initialize_shell(void) {
     HOME = (char *)malloc(PATH_MAX + 1);

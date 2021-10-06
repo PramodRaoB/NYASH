@@ -94,6 +94,12 @@
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/history.h">
 			<Option target="NYASH"/>
 		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/jobs.c">
+			<Option target="NYASH"/>
+		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/jobs.h">
+			<Option target="NYASH"/>
+		</Unit>
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/ls.c">
 			<Option target="NYASH"/>
 		</Unit>

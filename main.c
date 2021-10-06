@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 //TODO: Arrow-key history
+//TODO: history bug when given ; separated commands
 
 int main(void) {
     char *inputBuffer = NULL;

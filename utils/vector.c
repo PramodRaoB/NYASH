@@ -19,6 +19,7 @@ void init_vector(vector **newList) {
     }
     (*newList)->push_back = &vector_push_back;
     (*newList)->erase = &erase_vector;
+    (*newList)->clear = &clear_vector;
 }
 
 void vector_push_back(vector *l, char *str) {
@@ -47,7 +48,13 @@ void erase_vector(vector *l) {
     if (!l) return;
     for (int i = 0; i < l->size; i++) if(l->arr[i]) free(l->arr[i]);
     l->size = 0;
-    if (l->arr)
-        free(l->arr);
+    l->capacity = 1;
+    free(l->arr);
     free(l);
+}
+
+void clear_vector(vector *l) {
+    if (!l) return;
+    for (int i = 0; i < l->size; i++) if(l->arr[i]) free(l->arr[i]);
+    l->size = 0;
 }

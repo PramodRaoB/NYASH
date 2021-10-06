@@ -50,19 +50,21 @@ int exec_sys_command(vector *tokens) {
         }
         signal(SIGTTOU, SIG_IGN);
         signal(SIGTTIN, SIG_IGN);
-        if (tcsetpgrp(STDIN_FILENO, childPid) == -1) {
-            perror("tcsetpgrp");
-            signal(SIGTTOU, SIG_DFL);
-            return 1;
-        }
+        tcsetpgrp(STDIN_FILENO, childPid);
+//        if (tcsetpgrp(STDIN_FILENO, childPid) == -1) {
+//            perror("tcsetpgrpl");
+//            signal(SIGTTOU, SIG_DFL);
+//            return 1;
+//        }
         waitpid(childPid, &statusCode, WUNTRACED);
 
-        if (tcsetpgrp(STDIN_FILENO, getpgrp()) == -1) {
-            perror("tcsetpgrp");
-            signal(SIGTTOU, SIG_DFL);
-            signal(SIGTTIN, SIG_DFL);
-            return 1;
-        }
+        tcsetpgrp(STDIN_FILENO, getpgrp());
+//        if (tcsetpgrp(STDIN_FILENO, getpgrp()) == -1) {
+//            perror("tcsetpgrp");
+//            signal(SIGTTOU, SIG_DFL);
+//            signal(SIGTTIN, SIG_DFL);
+//            return 1;
+//        }
         signal(SIGTTOU, SIG_DFL);
         signal(SIGTTIN, SIG_DFL);
     }

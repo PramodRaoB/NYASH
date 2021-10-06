@@ -13,5 +13,6 @@ extern char *historyFilePath;
 extern header *historyList;
 
 extern jobList *jobs;
+extern int currJob;
 
 #endif
