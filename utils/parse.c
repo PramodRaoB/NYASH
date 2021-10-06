@@ -15,6 +15,8 @@
 #include "../commands/history.h"
 #include "../commands/jobs.h"
 #include "../commands/sig.h"
+#include "../commands/bg.h"
+#include "../commands/fg.h"
 
 char *builtinCommands[] = {"cd", "echo", "history", "ls", "pinfo", "pwd", "repeat", "_jobs", "exit"};
 int is_builtin(vector *tokens) {
@@ -208,6 +210,10 @@ int execute_command(vector *tokens, int usePipe) {
         currStatus = _jobs(tokens);
     else if (strcmp(tokens->arr[0], "sig") == 0)
         currStatus = sig(tokens);
+    else if (strcmp(tokens->arr[0], "fg") == 0)
+        currStatus = fg(tokens);
+    else if (strcmp(tokens->arr[0], "bg") == 0)
+        currStatus = bg(tokens);
     else if (strcmp(tokens->arr[0], "exit") == 0)
         currStatus = -1;
     else

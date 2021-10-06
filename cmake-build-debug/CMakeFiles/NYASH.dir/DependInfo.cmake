@@ -8,8 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/jade/CLionProjects/NYASH/commands/bg.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/bg.c.o"
   "/home/jade/CLionProjects/NYASH/commands/cd.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/cd.c.o"
   "/home/jade/CLionProjects/NYASH/commands/echo.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/echo.c.o"
+  "/home/jade/CLionProjects/NYASH/commands/fg.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/fg.c.o"
   "/home/jade/CLionProjects/NYASH/commands/history.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/history.c.o"
   "/home/jade/CLionProjects/NYASH/commands/jobs.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/jobs.c.o"
   "/home/jade/CLionProjects/NYASH/commands/ls.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/ls.c.o"

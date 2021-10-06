@@ -129,6 +129,30 @@ NYASH/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/build
 .PHONY : NYASH/fast
 
+commands/bg.o: commands/bg.c.o
+.PHONY : commands/bg.o
+
+# target to build an object file
+commands/bg.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/bg.c.o
+.PHONY : commands/bg.c.o
+
+commands/bg.i: commands/bg.c.i
+.PHONY : commands/bg.i
+
+# target to preprocess a source file
+commands/bg.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/bg.c.i
+.PHONY : commands/bg.c.i
+
+commands/bg.s: commands/bg.c.s
+.PHONY : commands/bg.s
+
+# target to generate assembly for a file
+commands/bg.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/bg.c.s
+.PHONY : commands/bg.c.s
+
 commands/cd.o: commands/cd.c.o
 .PHONY : commands/cd.o
 
@@ -176,6 +200,30 @@ commands/echo.s: commands/echo.c.s
 commands/echo.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/echo.c.s
 .PHONY : commands/echo.c.s
+
+commands/fg.o: commands/fg.c.o
+.PHONY : commands/fg.o
+
+# target to build an object file
+commands/fg.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/fg.c.o
+.PHONY : commands/fg.c.o
+
+commands/fg.i: commands/fg.c.i
+.PHONY : commands/fg.i
+
+# target to preprocess a source file
+commands/fg.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/fg.c.i
+.PHONY : commands/fg.c.i
+
+commands/fg.s: commands/fg.c.s
+.PHONY : commands/fg.s
+
+# target to generate assembly for a file
+commands/fg.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/fg.c.s
+.PHONY : commands/fg.c.s
 
 commands/history.o: commands/history.c.o
 .PHONY : commands/history.o
@@ -594,12 +642,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... NYASH"
+	@echo "... commands/bg.o"
+	@echo "... commands/bg.i"
+	@echo "... commands/bg.s"
 	@echo "... commands/cd.o"
 	@echo "... commands/cd.i"
 	@echo "... commands/cd.s"
 	@echo "... commands/echo.o"
 	@echo "... commands/echo.i"
 	@echo "... commands/echo.s"
+	@echo "... commands/fg.o"
+	@echo "... commands/fg.i"
+	@echo "... commands/fg.s"
 	@echo "... commands/history.o"
 	@echo "... commands/history.i"
 	@echo "... commands/history.s"

@@ -76,6 +76,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/bg.c">
+			<Option target="NYASH"/>
+		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/bg.h">
+			<Option target="NYASH"/>
+		</Unit>
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/cd.c">
 			<Option target="NYASH"/>
 		</Unit>
@@ -86,6 +92,12 @@
 			<Option target="NYASH"/>
 		</Unit>
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/echo.h">
+			<Option target="NYASH"/>
+		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/fg.c">
+			<Option target="NYASH"/>
+		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/fg.h">
 			<Option target="NYASH"/>
 		</Unit>
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/history.c">

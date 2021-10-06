@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/NYASH.dir/commands/bg.c.o"
   "CMakeFiles/NYASH.dir/commands/cd.c.o"
   "CMakeFiles/NYASH.dir/commands/echo.c.o"
+  "CMakeFiles/NYASH.dir/commands/fg.c.o"
   "CMakeFiles/NYASH.dir/commands/history.c.o"
   "CMakeFiles/NYASH.dir/commands/jobs.c.o"
   "CMakeFiles/NYASH.dir/commands/ls.c.o"
