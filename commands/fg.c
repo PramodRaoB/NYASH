@@ -46,9 +46,16 @@ int fg(vector *tokens) {
     waitpid(pid, &statusCode, WUNTRACED);
 
     tcsetpgrp(STDIN_FILENO, getpgrp());
+
     int currStatus = 0;
-    if (!WIFSTOPPED(statusCode)) jobs->delete(jobs, pid);
-    else currStatus = 1;
+    if (!WIFSTOPPED(statusCode)) jobs->delete(jobs, childPid);
+    else {
+        if (WSTOPSIG(statusCode) == SIGTSTP) {
+            job *curr = jobs->proc(jobs, childPid);
+            printf("[%d] suspended %s [%d]\n", curr->jobNumber, curr->name, curr->pid);
+        }
+        currStatus = 1;
+    }
     if (!WIFEXITED(statusCode)) currStatus = 1;
     signal(SIGTTOU, SIG_DFL);
     signal(SIGTTIN, SIG_DFL);
