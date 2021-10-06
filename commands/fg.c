@@ -48,10 +48,10 @@ int fg(vector *tokens) {
     tcsetpgrp(STDIN_FILENO, getpgrp());
 
     int currStatus = 0;
-    if (!WIFSTOPPED(statusCode)) jobs->delete(jobs, childPid);
+    if (!WIFSTOPPED(statusCode)) jobs->delete(jobs, pid);
     else {
         if (WSTOPSIG(statusCode) == SIGTSTP) {
-            job *curr = jobs->proc(jobs, childPid);
+            job *curr = jobs->proc(jobs, pid);
             printf("[%d] suspended %s [%d]\n", curr->jobNumber, curr->name, curr->pid);
         }
         currStatus = 1;

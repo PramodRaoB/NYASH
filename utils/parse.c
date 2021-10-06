@@ -83,7 +83,7 @@ int parse_command(vector *tokens) {
     int inputFd = dup(STDIN_FILENO);
     int outputFd = dup(STDOUT_FILENO);
     if (inputFd < 0 || outputFd < 0) {
-        printf("NYASH: Error with file descriptor\n");
+        printf(RED "NYASH: Error with file descriptor\n" RESET);
         return 1;
     }
 
@@ -94,7 +94,7 @@ int parse_command(vector *tokens) {
     for (int i = 0; i < tokens->size; i++) {
         if (strcmp(tokens->arr[i], "<") == 0) {
             if (i == tokens->size - 1) {
-                printf("NYASH: Error invalid input file\n");
+                printf(RED "NYASH: Error invalid input file\n" RESET);
                 reset_io(inputFd, outputFd);
                 return 1;
             }
@@ -113,7 +113,7 @@ int parse_command(vector *tokens) {
         }
         else if (strcmp(tokens->arr[i], ">") == 0) {
             if (i == tokens->size - 1) {
-                printf("NYASH: Error invalid output file\n");
+                printf(RED "NYASH: Error invalid output file\n" RESET);
                 reset_io(inputFd, outputFd);
                 return 1;
             }
@@ -133,7 +133,7 @@ int parse_command(vector *tokens) {
         }
         else if (strcmp(tokens->arr[i], ">>") == 0) {
             if (i == tokens->size - 1) {
-                printf("NYASH: Error invalid output file\n");
+                printf(RED "NYASH: Error invalid output file\n" RESET);
                 reset_io(inputFd, outputFd);
                 return 1;
             }

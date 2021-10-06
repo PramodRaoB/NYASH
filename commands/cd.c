@@ -10,7 +10,7 @@
 
 int cd(vector *tokens) {
     if (tokens->size > 2) {
-        printf("cd: Error too many arguments\n");
+        printf(RED "cd: Error too many arguments\n" RESET);
         return 1;
     }
     char *target = NULL;
@@ -53,7 +53,7 @@ int cd(vector *tokens) {
         return 0;
     }
     else {
-        printf("cd: Invalid target\n");
+        printf(RED "cd: Invalid target\n" RESET);
         free(target);
         return 1;
     }

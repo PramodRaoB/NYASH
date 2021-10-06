@@ -36,7 +36,7 @@ void display_prompt(int status) {
         exit(EXIT_FAILURE);
     }
     parse_curr_dir(curr);
-    printf(BLUE "%s@%s:%s" RESET, userName, systemName, curr);
+    printf(BLUE "%s@%s:" CYAN "%s" RESET, userName, systemName, curr);
     if (status) printf(RED ">" RESET);
     else printf(GREEN ">" RESET);
     free(systemName);

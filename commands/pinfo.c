@@ -7,10 +7,11 @@
 #include "pinfo.h"
 #include "../utils/tokenize.h"
 #include "../utils/parse.h"
+#include "../globals.h"
 
 int pinfo(vector *tokens) {
     if (tokens->size > 2) {
-        printf("pinfo: Error too many arguments\n");
+        printf(RED "pinfo: Error too many arguments\n" RESET);
         return 1;
     }
     pid_t pid;
@@ -26,7 +27,7 @@ int pinfo(vector *tokens) {
     sprintf(procStat, "/proc/%d/stat", pid);
     FILE *status = fopen(procStat, "r");
     if (status == NULL) {
-        printf("pinfo: Error process not found\n");
+        printf(RED "pinfo: Error process not found\n" RESET);
         free(procStat);
         return 1;
     }

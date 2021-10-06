@@ -184,7 +184,7 @@ int ls(vector *tokens) {
                 flagA = 1;
                 break;
             default:
-                printf("ls: Usage ls -[al] ... [FILE]\n");
+                printf(RED "ls: Usage ls -[al] ... [FILE]\n" RESET);
                 return 1;
         }
     }

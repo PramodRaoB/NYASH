@@ -32,7 +32,7 @@ int exec_sys_command(vector *tokens) {
             return 1;
         }
         if (execvp(tokens->arr[0], tokens->arr) == -1) {
-            printf("NYASH: command not found: %s\n", tokens->arr[0]);
+            printf(RED "NYASH: command not found: %s\n" RESET, tokens->arr[0]);
             free(HOME);
             free(currPath);
             free(prevPath);
