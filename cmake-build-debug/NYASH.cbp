@@ -124,6 +124,12 @@
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/repeat.h">
 			<Option target="NYASH"/>
 		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/sig.c">
+			<Option target="NYASH"/>
+		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/sig.h">
+			<Option target="NYASH"/>
+		</Unit>
 		<Unit filename="/home/jade/CLionProjects/NYASH/main.c">
 			<Option target="NYASH"/>
 		</Unit>

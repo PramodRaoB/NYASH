@@ -321,6 +321,30 @@ commands/repeat.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/repeat.c.s
 .PHONY : commands/repeat.c.s
 
+commands/sig.o: commands/sig.c.o
+.PHONY : commands/sig.o
+
+# target to build an object file
+commands/sig.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/sig.c.o
+.PHONY : commands/sig.c.o
+
+commands/sig.i: commands/sig.c.i
+.PHONY : commands/sig.i
+
+# target to preprocess a source file
+commands/sig.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/sig.c.i
+.PHONY : commands/sig.c.i
+
+commands/sig.s: commands/sig.c.s
+.PHONY : commands/sig.s
+
+# target to generate assembly for a file
+commands/sig.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/sig.c.s
+.PHONY : commands/sig.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -594,6 +618,9 @@ help:
 	@echo "... commands/repeat.o"
 	@echo "... commands/repeat.i"
 	@echo "... commands/repeat.s"
+	@echo "... commands/sig.o"
+	@echo "... commands/sig.i"
+	@echo "... commands/sig.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

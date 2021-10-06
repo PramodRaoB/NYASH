@@ -14,6 +14,7 @@ void init_jobs(jobList **h) {
     (*h)->start = NULL;
     (*h)->insert = insert_job;
     (*h)->find = find_job;
+    (*h)->find_by_number = find_job_by_number;
     (*h)->delete = delete_job;
     (*h)->erase = erase_jobs;
     (*h)->proc = proc_job;
@@ -65,6 +66,16 @@ char *find_job(jobList *h, int pid) {
         curr = curr->next;
     }
     return NULL;
+}
+
+int find_job_by_number(jobList *h, int num) {
+    if (!h) return -1;
+    job *curr = h->start;
+    while (curr) {
+        if (curr->jobNumber == num) return curr->pid;
+        curr = curr->next;
+    }
+    return -1;
 }
 
 job *proc_job(jobList *h, int pid) {
