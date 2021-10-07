@@ -5,12 +5,12 @@
 #include "utils/parse.h"
 #include "utils/tokenize.h"
 #include "processor/child_handler.h"
+#include "commands/history.h"
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 //TODO: Arrow-key history
-//TODO: history bug when given ; separated commands
 //TODO: Relative path handling
 
 int main(void) {
@@ -30,6 +30,8 @@ int main(void) {
             status = -1;
             break;
         }
+        insert_into_history(inputBuffer);
+        write_into_history();
         vector *commands = tokenize_input(inputBuffer);
         if (!commands)
             continue;

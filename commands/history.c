@@ -93,30 +93,26 @@ int history(vector *tokens)  {
     return 0;
 }
 
-int insert_into_history(vector *tokens) {
-    int totalSize = 0;
-    for (int i = 0; i < tokens->size; i++) totalSize += strlen(tokens->arr[i]) + 1;
-    char *command = (char *) malloc(totalSize + 1);
-    if (!command) {
-        perror("insert_into_history");
+int insert_into_history(char *str) {
+    if (str == NULL) return 1;
+    char *copy = malloc(strlen(str) + 1);
+    if (copy == NULL) {
+        perror("malloc");
         return 1;
     }
-    command[0] = '\0';
-    for (int i = 0; i < tokens->size; i++) {
-        strcat(command, tokens->arr[i]);
-        strcat(command, " ");
-    }
+    strcpy(copy, str);
+    copy[strlen(str) - 1] = '\0';
 
     if (historyList->size == 0) {
-        historyList->insert(historyList, command);
+        historyList->insert(historyList, copy);
     }
     else {
         list *curr = historyList->start;
         while (curr->next) curr = curr->next;
-        if (strcmp(command, curr->str) != 0) historyList->insert(historyList, command);
+        if (strcmp(copy, curr->str) != 0) historyList->insert(historyList, copy);
     }
     if (historyList->size > 20) historyList->trim(historyList);
-    free(command);
+    free(copy);
     return 0;
 }
 

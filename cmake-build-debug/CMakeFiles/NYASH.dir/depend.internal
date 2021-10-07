@@ -102,6 +102,7 @@ CMakeFiles/NYASH.dir/commands/sig.c.o
  /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
 CMakeFiles/NYASH.dir/main.c.o
+ /home/jade/CLionProjects/NYASH/commands/history.h
  /home/jade/CLionProjects/NYASH/globals.h
  /home/jade/CLionProjects/NYASH/main.c
  /home/jade/CLionProjects/NYASH/processor/child_handler.h
@@ -177,7 +178,6 @@ CMakeFiles/NYASH.dir/utils/parse.c.o
  /home/jade/CLionProjects/NYASH/utils/parse.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
 CMakeFiles/NYASH.dir/utils/tokenize.c.o
- /home/jade/CLionProjects/NYASH/commands/history.h
  /home/jade/CLionProjects/NYASH/utils/tokenize.c
  /home/jade/CLionProjects/NYASH/utils/tokenize.h
  /home/jade/CLionProjects/NYASH/utils/vector.h

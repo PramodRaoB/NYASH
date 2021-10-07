@@ -5,7 +5,7 @@
 
 int history_init(void);
 int history(vector *tokens);
-int insert_into_history(vector *tokens);
+int insert_into_history(char *str);
 int write_into_history(void);
 
 #endif //NYASH_HISTORY_H

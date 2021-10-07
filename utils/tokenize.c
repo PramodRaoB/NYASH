@@ -1,6 +1,5 @@
 #include "tokenize.h"
 #include <string.h>
-#include "../commands/history.h"
 
 vector *tokenize_command(char *inputBuffer) {
     vector *tokens = NULL;
@@ -25,7 +24,5 @@ vector *tokenize_input(char *inputBuffer) {
         commands->push_back(commands, nextCommand);
         nextCommand = strtok_r(NULL, ";\n", &savePtr);
     }
-    insert_into_history(commands);
-    write_into_history();
     return commands;
 }

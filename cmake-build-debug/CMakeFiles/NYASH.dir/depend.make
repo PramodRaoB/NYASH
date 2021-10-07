@@ -102,6 +102,7 @@ CMakeFiles/NYASH.dir/commands/sig.c.o: \
  ../utils/list.h \
  ../utils/vector.h
 CMakeFiles/NYASH.dir/main.c.o: \
+ ../commands/history.h \
  ../globals.h \
  ../main.c \
  ../processor/child_handler.h \
@@ -177,7 +178,6 @@ CMakeFiles/NYASH.dir/utils/parse.c.o: \
  ../utils/parse.h \
  ../utils/vector.h
 CMakeFiles/NYASH.dir/utils/tokenize.c.o: \
- ../commands/history.h \
  ../utils/tokenize.c \
  ../utils/tokenize.h \
  ../utils/vector.h
