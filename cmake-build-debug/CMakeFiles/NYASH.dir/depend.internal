@@ -60,6 +60,10 @@ CMakeFiles/NYASH.dir/commands/ls.c.o
 CMakeFiles/NYASH.dir/commands/pinfo.c.o
  /home/jade/CLionProjects/NYASH/commands/pinfo.c
  /home/jade/CLionProjects/NYASH/commands/pinfo.h
+ /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
+ /home/jade/CLionProjects/NYASH/utils/job_list.h
+ /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/parse.h
  /home/jade/CLionProjects/NYASH/utils/tokenize.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
@@ -70,11 +74,23 @@ CMakeFiles/NYASH.dir/commands/pwd.c.o
  /home/jade/CLionProjects/NYASH/utils/colours.h
  /home/jade/CLionProjects/NYASH/utils/job_list.h
  /home/jade/CLionProjects/NYASH/utils/list.h
- /home/jade/CLionProjects/NYASH/utils/parse.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
 CMakeFiles/NYASH.dir/commands/repeat.c.o
  /home/jade/CLionProjects/NYASH/commands/repeat.c
  /home/jade/CLionProjects/NYASH/commands/repeat.h
+ /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
+ /home/jade/CLionProjects/NYASH/utils/job_list.h
+ /home/jade/CLionProjects/NYASH/utils/list.h
+ /home/jade/CLionProjects/NYASH/utils/parse.h
+ /home/jade/CLionProjects/NYASH/utils/vector.h
+CMakeFiles/NYASH.dir/commands/replay.c.o
+ /home/jade/CLionProjects/NYASH/commands/replay.c
+ /home/jade/CLionProjects/NYASH/commands/replay.h
+ /home/jade/CLionProjects/NYASH/globals.h
+ /home/jade/CLionProjects/NYASH/utils/colours.h
+ /home/jade/CLionProjects/NYASH/utils/job_list.h
+ /home/jade/CLionProjects/NYASH/utils/list.h
  /home/jade/CLionProjects/NYASH/utils/parse.h
  /home/jade/CLionProjects/NYASH/utils/vector.h
 CMakeFiles/NYASH.dir/commands/sig.c.o
@@ -150,6 +166,7 @@ CMakeFiles/NYASH.dir/utils/parse.c.o
  /home/jade/CLionProjects/NYASH/commands/pinfo.h
  /home/jade/CLionProjects/NYASH/commands/pwd.h
  /home/jade/CLionProjects/NYASH/commands/repeat.h
+ /home/jade/CLionProjects/NYASH/commands/replay.h
  /home/jade/CLionProjects/NYASH/commands/sig.h
  /home/jade/CLionProjects/NYASH/globals.h
  /home/jade/CLionProjects/NYASH/processor/sysCommands.h

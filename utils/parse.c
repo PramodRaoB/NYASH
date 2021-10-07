@@ -17,6 +17,7 @@
 #include "../commands/sig.h"
 #include "../commands/bg.h"
 #include "../commands/fg.h"
+#include "../commands/replay.h"
 
 char *builtinCommands[] = {"cd", "echo", "history", "ls", "pinfo", "pwd", "repeat", "_jobs", "exit"};
 int is_builtin(vector *tokens) {
@@ -87,10 +88,16 @@ int parse_command(vector *tokens) {
         return 1;
     }
 
+    int currStatus = 0;
+    if (strcmp(tokens->arr[0], "repeat") == 0 || strcmp(tokens->arr[0], "replay") == 0) {
+        currStatus = execute_command(tokens, 0);
+        reset_io(inputFd, outputFd);
+        return currStatus;
+    }
+
     vector *processedTokens = NULL;
     int usePipe = 1;
     init_vector(&processedTokens);
-    int currStatus = 0;
     for (int i = 0; i < tokens->size; i++) {
         if (strcmp(tokens->arr[i], "<") == 0) {
             if (i == tokens->size - 1) {
@@ -214,14 +221,18 @@ int execute_command(vector *tokens, int usePipe) {
         currStatus = fg(tokens);
     else if (strcmp(tokens->arr[0], "bg") == 0)
         currStatus = bg(tokens);
+    else if (strcmp(tokens->arr[0], "replay") == 0)
+        currStatus = replay(tokens);
     else if (strcmp(tokens->arr[0], "exit") == 0)
         currStatus = -1;
     else
         currStatus = exec_sys_command(tokens);
 
-    if (dup2(pfd[0], STDIN_FILENO) < 0) {
-        perror("STDIN");
-        return 1;
+    if (usePipe) {
+        if (dup2(pfd[0], STDIN_FILENO) < 0) {
+            perror("STDIN");
+            return 1;
+        }
     }
     close(pfd[0]);
     return currStatus;

@@ -104,6 +104,7 @@ int delete_job(jobList *h, int pid) {
     while (curr) {
         if (pid == curr->pid) {
             prev->next = curr->next;
+            h->size--;
             free(curr->name);
             free(curr);
             return 0;

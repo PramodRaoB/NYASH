@@ -60,6 +60,10 @@ CMakeFiles/NYASH.dir/commands/ls.c.o: \
 CMakeFiles/NYASH.dir/commands/pinfo.c.o: \
  ../commands/pinfo.c \
  ../commands/pinfo.h \
+ ../globals.h \
+ ../utils/colours.h \
+ ../utils/job_list.h \
+ ../utils/list.h \
  ../utils/parse.h \
  ../utils/tokenize.h \
  ../utils/vector.h
@@ -70,11 +74,23 @@ CMakeFiles/NYASH.dir/commands/pwd.c.o: \
  ../utils/colours.h \
  ../utils/job_list.h \
  ../utils/list.h \
- ../utils/parse.h \
  ../utils/vector.h
 CMakeFiles/NYASH.dir/commands/repeat.c.o: \
  ../commands/repeat.c \
  ../commands/repeat.h \
+ ../globals.h \
+ ../utils/colours.h \
+ ../utils/job_list.h \
+ ../utils/list.h \
+ ../utils/parse.h \
+ ../utils/vector.h
+CMakeFiles/NYASH.dir/commands/replay.c.o: \
+ ../commands/replay.c \
+ ../commands/replay.h \
+ ../globals.h \
+ ../utils/colours.h \
+ ../utils/job_list.h \
+ ../utils/list.h \
  ../utils/parse.h \
  ../utils/vector.h
 CMakeFiles/NYASH.dir/commands/sig.c.o: \
@@ -150,6 +166,7 @@ CMakeFiles/NYASH.dir/utils/parse.c.o: \
  ../commands/pinfo.h \
  ../commands/pwd.h \
  ../commands/repeat.h \
+ ../commands/replay.h \
  ../commands/sig.h \
  ../globals.h \
  ../processor/sysCommands.h \

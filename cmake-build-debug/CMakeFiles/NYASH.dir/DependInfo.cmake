@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/jade/CLionProjects/NYASH/commands/pinfo.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/pinfo.c.o"
   "/home/jade/CLionProjects/NYASH/commands/pwd.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/pwd.c.o"
   "/home/jade/CLionProjects/NYASH/commands/repeat.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/repeat.c.o"
+  "/home/jade/CLionProjects/NYASH/commands/replay.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/replay.c.o"
   "/home/jade/CLionProjects/NYASH/commands/sig.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/sig.c.o"
   "/home/jade/CLionProjects/NYASH/main.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/main.c.o"
   "/home/jade/CLionProjects/NYASH/processor/child_handler.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/processor/child_handler.c.o"

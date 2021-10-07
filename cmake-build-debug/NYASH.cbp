@@ -136,6 +136,12 @@
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/repeat.h">
 			<Option target="NYASH"/>
 		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/replay.c">
+			<Option target="NYASH"/>
+		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/replay.h">
+			<Option target="NYASH"/>
+		</Unit>
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/sig.c">
 			<Option target="NYASH"/>
 		</Unit>

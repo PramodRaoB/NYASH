@@ -11,6 +11,7 @@
 
 //TODO: Arrow-key history
 //TODO: history bug when given ; separated commands
+//TODO: Relative path handling
 
 int main(void) {
     char *inputBuffer = NULL;
@@ -21,6 +22,9 @@ int main(void) {
     int status = 0;
     while (status != -1) {
         size_t bufSize = 0;
+        if (jobs->size == 0) {
+           currJob = 1;
+        }
         display_prompt(status);
         if (getline(&inputBuffer, &bufSize, stdin) == EOF) {
             status = -1;

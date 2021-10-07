@@ -369,6 +369,30 @@ commands/repeat.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/repeat.c.s
 .PHONY : commands/repeat.c.s
 
+commands/replay.o: commands/replay.c.o
+.PHONY : commands/replay.o
+
+# target to build an object file
+commands/replay.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/replay.c.o
+.PHONY : commands/replay.c.o
+
+commands/replay.i: commands/replay.c.i
+.PHONY : commands/replay.i
+
+# target to preprocess a source file
+commands/replay.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/replay.c.i
+.PHONY : commands/replay.c.i
+
+commands/replay.s: commands/replay.c.s
+.PHONY : commands/replay.s
+
+# target to generate assembly for a file
+commands/replay.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/replay.c.s
+.PHONY : commands/replay.c.s
+
 commands/sig.o: commands/sig.c.o
 .PHONY : commands/sig.o
 
@@ -672,6 +696,9 @@ help:
 	@echo "... commands/repeat.o"
 	@echo "... commands/repeat.i"
 	@echo "... commands/repeat.s"
+	@echo "... commands/replay.o"
+	@echo "... commands/replay.i"
+	@echo "... commands/replay.s"
 	@echo "... commands/sig.o"
 	@echo "... commands/sig.i"
 	@echo "... commands/sig.s"

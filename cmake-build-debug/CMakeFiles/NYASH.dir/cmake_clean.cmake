@@ -9,6 +9,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/NYASH.dir/commands/pinfo.c.o"
   "CMakeFiles/NYASH.dir/commands/pwd.c.o"
   "CMakeFiles/NYASH.dir/commands/repeat.c.o"
+  "CMakeFiles/NYASH.dir/commands/replay.c.o"
   "CMakeFiles/NYASH.dir/commands/sig.c.o"
   "CMakeFiles/NYASH.dir/main.c.o"
   "CMakeFiles/NYASH.dir/processor/child_handler.c.o"
