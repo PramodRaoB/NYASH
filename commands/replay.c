@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <unistd.h>
+#include <signal.h>
+#include <sys/wait.h>
 #include "../utils/parse.h"
 
 int __is_command(char *str) {
@@ -126,13 +128,50 @@ int replay(vector *tokens) {
 
     long num = period / interval;
     int currStatus = 0;
-    for (long i = 0; i < num; i++) {
-        vector *copy = NULL;
-        init_vector(&copy);
-        for (int j = 0; j < command->size; j++) copy->push_back(copy, command->arr[j]);
-        currStatus |= parse_command(copy);
-        sleep(interval);
-        copy->erase(copy);
+    pid_t childPid = fork();
+    if (childPid < 0) {
+        perror(RED "replay" RESET);
+        return 1;
+    }
+    else if (childPid == 0) {
+        signal(SIGINT, SIG_DFL);
+        signal(SIGTSTP, SIG_DFL);
+        if (setpgid(0, 0) == -1) {
+            perror("setpgid");
+            return 1;
+        }
+        for (long i = 0; i < num; i++) {
+            vector *copy = NULL;
+            init_vector(&copy);
+            for (int j = 0; j < command->size; j++) copy->push_back(copy, command->arr[j]);
+            currStatus |= parse_command(copy);
+            sleep(interval);
+            copy->erase(copy);
+        }
+    }
+    else {
+        int statusCode = 0;
+        jobs->insert(jobs, childPid, tokens->arr[0]);
+        signal(SIGTTOU, SIG_IGN);
+        signal(SIGTTIN, SIG_IGN);
+        tcsetpgrp(STDIN_FILENO, childPid);
+
+        waitpid(childPid, &statusCode, WUNTRACED);
+
+        tcsetpgrp(STDIN_FILENO, getpgrp());
+
+        if (!WIFSTOPPED(statusCode)) jobs->delete(jobs, childPid);
+        else {
+            if (WSTOPSIG(statusCode) == SIGTSTP) {
+                job *curr = jobs->proc(jobs, childPid);
+                printf("[%d] suspended %s [%d]\n", curr->jobNumber, curr->name, curr->pid);
+            }
+            currStatus = 1;
+        }
+        if (!WIFEXITED(statusCode)) currStatus = 1;
+        signal(SIGTTOU, SIG_DFL);
+        signal(SIGTTIN, SIG_DFL);
+        return currStatus;
     }
 
     command->erase(command);
