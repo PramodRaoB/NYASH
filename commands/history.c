@@ -66,18 +66,18 @@ int history(vector *tokens)  {
     else if (tokens->size == 2) {
         for (int i = 0; i < strlen(tokens->arr[1]); i++) {
             if (tokens->arr[1][i] < '0' || tokens->arr[1][i] > '9') {
-                printf(RED "Usage: history [0 <= N <= 20]\n" RESET);
+                fprintf(stderr, RED "history: Invalid repeat count\n" RESET);
                 return 1;
             }
         }
         printNum = atoi(tokens->arr[1]);
     }
     else {
-        printf(RED "Usage: history [0 <= N <= 20]\n" RESET);
+        fprintf(stderr, RED "history: Error too many arguments\n" RESET "Usage: history [0 <= N <= 20]\n");
         return 1;
     }
     if (printNum < 0 || printNum > 20) {
-        printf(RED "Argument must be in range [0, 20]" RESET);
+        fprintf(stderr, RED "history: Argument must be in range [0, 20]\n" RESET);
         return 1;
     }
     list *curr = historyList->start;

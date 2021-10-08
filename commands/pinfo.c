@@ -11,7 +11,7 @@
 
 int pinfo(vector *tokens) {
     if (tokens->size > 2) {
-        printf(RED "pinfo: Error too many arguments\n" RESET);
+        fprintf(stderr, RED "pinfo: Error too many arguments\n" RESET "Usage: pinfo [N]\n");
         return 1;
     }
     pid_t pid;
@@ -27,7 +27,7 @@ int pinfo(vector *tokens) {
     sprintf(procStat, "/proc/%d/stat", pid);
     FILE *status = fopen(procStat, "r");
     if (status == NULL) {
-        printf(RED "pinfo: Error process not found\n" RESET);
+        fprintf(stderr, RED "pinfo: Error process not found\n" RESET);
         free(procStat);
         return 1;
     }

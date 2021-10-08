@@ -26,7 +26,7 @@ int _jobs(vector *tokens) {
                 flagS = 1;
                 break;
             default:
-                printf(RED "jobs: Usage jobs -[rs]\n" RESET);
+                fprintf(stderr, RED "jobs: Error invalid argument\n" RESET "Usage: jobs -[rs]\n");
                 return 1;
         }
     }
@@ -56,7 +56,7 @@ int _jobs(vector *tokens) {
         sprintf(procStat, "/proc/%d/stat", curr->pid);
         FILE *status = fopen(procStat, "r");
         if (status == NULL) {
-            printf(RED "jobs: Error process not found\n" RESET);
+            fprintf(stderr, RED "jobs: Error process not found\n" RESET);
             free(procStat);
             continue;
         }
