@@ -36,7 +36,7 @@ int _jobs(vector *tokens) {
     init_vector(&currJobs);
     job *temp = jobs->start;
     while (temp != NULL) {
-        char *pid = (char *) malloc(8);
+        char pid[8];
         sprintf(pid, "%d", temp->pid);
         currJobs->push_back(currJobs, pid);
         temp = temp->next;
@@ -88,6 +88,7 @@ int _jobs(vector *tokens) {
         if (strcmp(jobStatus, "continue") != 0)
             printf("[%d] %s %s [%d]\n", curr->jobNumber, jobStatus, curr->name, curr->pid);
 
+        statArgs->erase(statArgs);
         free(data);
         free(procStat);
     }

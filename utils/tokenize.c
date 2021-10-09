@@ -1,5 +1,7 @@
 #include "tokenize.h"
 #include <string.h>
+#include <malloc.h>
+#include "parse.h"
 
 vector *tokenize_command(char *inputBuffer) {
     vector *tokens = NULL;
@@ -8,7 +10,9 @@ vector *tokenize_command(char *inputBuffer) {
 
     char *nextToken = strtok_r(inputBuffer, " \t\n", &savePtr);
     while (nextToken) {
+        nextToken = expand_path(nextToken);
         tokens->push_back(tokens, nextToken);
+        free(nextToken);
         nextToken = strtok_r(NULL, " \t\n", &savePtr);
     }
     return tokens;

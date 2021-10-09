@@ -6,7 +6,6 @@
 #include <malloc.h>
 #include "../globals.h"
 #include "../utils/parse.h"
-#include "../utils/colours.h"
 #include <pwd.h>
 #include <grp.h>
 #include <errno.h>
@@ -118,7 +117,7 @@ int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
     if (!S_ISDIR(statBuff.st_mode)) {
         if (flagL && ls_l_info(path)) return 1;
         printf("%s",path);
-        printf(flagL ? "\n" : " ");
+        printf("\n");
         free(processedPath);
         return 0;
     }
@@ -157,7 +156,7 @@ int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
         if (S_ISDIR(statBuff.st_mode)) printf(BLUE "%s" RESET, entry->d_name);
         else if (S_ISLNK(statBuff.st_mode)) printf(GREEN "%s" RESET, entry->d_name);
         else printf(RESET "%s", entry->d_name);
-        printf(flagL ? "\n" : " ");
+        printf("\n");
     }
     if (errno != 0) {
         perror("ls");
@@ -197,11 +196,9 @@ int ls(vector *tokens) {
     for (; optind < tokens->size; optind++) {
         hasArgs = 1;
         statusCode |= ls_processDir(tokens->arr[optind], flagA, flagL, multipleDirs);
-        if (!flagL) printf("\n");
     }
     if (!hasArgs) {
         statusCode |= ls_processDir(".", flagA, flagL, multipleDirs);
-        printf("\n");
     }
     return statusCode;
 }

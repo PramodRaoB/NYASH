@@ -148,6 +148,8 @@ int replay(vector *tokens) {
             sleep(interval);
             copy->erase(copy);
         }
+        command->erase(command);
+        exit(currStatus);
     }
     else {
         int statusCode = 0;
@@ -171,9 +173,7 @@ int replay(vector *tokens) {
         if (!WIFEXITED(statusCode)) currStatus = 1;
         signal(SIGTTOU, SIG_DFL);
         signal(SIGTTIN, SIG_DFL);
+        command->erase(command);
         return currStatus;
     }
-
-    command->erase(command);
-    return 0;
 }

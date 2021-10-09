@@ -11,7 +11,6 @@
 #include <stdlib.h>
 
 //TODO: Arrow-key history
-//TODO: Relative path handling
 
 int main(void) {
     char *inputBuffer = NULL;
