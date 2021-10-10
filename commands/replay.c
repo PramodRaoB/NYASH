@@ -76,7 +76,7 @@ int replay(vector *tokens) {
             char *endPtr = NULL;
             errno = 0;
             interval = strtol(tokens->arr[i + 1], &endPtr, 10);
-            if (errno != 0 || endPtr == tokens->arr[i + 1]) {
+            if (errno != 0 || endPtr == tokens->arr[i + 1] || interval <= 0) {
                 fprintf(stderr, RED "replay: Error invalid interval argument\n" RESET "Usage: replay --command [STR] --interval [N] --period [N]\n");
                 return 1;
             }
@@ -101,7 +101,7 @@ int replay(vector *tokens) {
             char *endPtr = NULL;
             errno = 0;
             period = strtol(tokens->arr[i + 1], &endPtr, 10);
-            if (errno != 0 || endPtr == tokens->arr[i + 1]) {
+            if (errno != 0 || endPtr == tokens->arr[i + 1] || period <= 0) {
                 fprintf(stderr, RED "replay: Error invalid period argument\n" RESET "Usage: replay --command [STR] --interval [N] --period [N]\n");
                 return 1;
             }
