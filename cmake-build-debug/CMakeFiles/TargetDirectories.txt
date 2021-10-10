@@ -1,3 +1,0 @@
-/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir
