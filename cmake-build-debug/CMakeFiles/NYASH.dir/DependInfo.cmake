@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/jade/CLionProjects/NYASH/commands/baywatch.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/baywatch.c.o"
   "/home/jade/CLionProjects/NYASH/commands/bg.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/bg.c.o"
   "/home/jade/CLionProjects/NYASH/commands/cd.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/cd.c.o"
   "/home/jade/CLionProjects/NYASH/commands/echo.c" "/home/jade/CLionProjects/NYASH/cmake-build-debug/CMakeFiles/NYASH.dir/commands/echo.c.o"

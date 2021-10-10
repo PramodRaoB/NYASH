@@ -18,18 +18,7 @@
 #include "../commands/bg.h"
 #include "../commands/fg.h"
 #include "../commands/replay.h"
-
-char *builtinCommands[] = {"cd", "echo", "history", "ls", "pinfo", "pwd", "repeat", "_jobs", "exit"};
-int is_builtin(vector *tokens) {
-    if (!tokens) return 0;
-    if (tokens->size == 0) return 0;
-    if (!tokens->arr[0]) return 0;
-    int n = sizeof (builtinCommands) / sizeof (char *);
-    for (int i = 0; i < n; i++) {
-        if (strcmp(builtinCommands[i], tokens->arr[0]) == 0) return 1;
-    }
-    return 0;
-}
+#include "../commands/baywatch.h"
 
 /*
  * If HOME is a prefix of the current path
@@ -223,6 +212,8 @@ int execute_command(vector *tokens, int usePipe) {
         currStatus = bg(tokens);
     else if (strcmp(tokens->arr[0], "replay") == 0)
         currStatus = replay(tokens);
+    else if (strcmp(tokens->arr[0], "baywatch") == 0)
+        currStatus = baywatch(tokens);
     else if (strcmp(tokens->arr[0], "exit") == 0)
         currStatus = -1;
     else

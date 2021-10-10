@@ -129,6 +129,30 @@ NYASH/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/build
 .PHONY : NYASH/fast
 
+commands/baywatch.o: commands/baywatch.c.o
+.PHONY : commands/baywatch.o
+
+# target to build an object file
+commands/baywatch.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/baywatch.c.o
+.PHONY : commands/baywatch.c.o
+
+commands/baywatch.i: commands/baywatch.c.i
+.PHONY : commands/baywatch.i
+
+# target to preprocess a source file
+commands/baywatch.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/baywatch.c.i
+.PHONY : commands/baywatch.c.i
+
+commands/baywatch.s: commands/baywatch.c.s
+.PHONY : commands/baywatch.s
+
+# target to generate assembly for a file
+commands/baywatch.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/NYASH.dir/build.make CMakeFiles/NYASH.dir/commands/baywatch.c.s
+.PHONY : commands/baywatch.c.s
+
 commands/bg.o: commands/bg.c.o
 .PHONY : commands/bg.o
 
@@ -666,6 +690,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... NYASH"
+	@echo "... commands/baywatch.o"
+	@echo "... commands/baywatch.i"
+	@echo "... commands/baywatch.s"
 	@echo "... commands/bg.o"
 	@echo "... commands/bg.i"
 	@echo "... commands/bg.s"

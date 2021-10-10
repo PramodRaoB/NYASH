@@ -76,6 +76,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/baywatch.c">
+			<Option target="NYASH"/>
+		</Unit>
+		<Unit filename="/home/jade/CLionProjects/NYASH/commands/baywatch.h">
+			<Option target="NYASH"/>
+		</Unit>
 		<Unit filename="/home/jade/CLionProjects/NYASH/commands/bg.c">
 			<Option target="NYASH"/>
 		</Unit>

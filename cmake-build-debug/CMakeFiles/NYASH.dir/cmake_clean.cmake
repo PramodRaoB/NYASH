@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/NYASH.dir/commands/baywatch.c.o"
   "CMakeFiles/NYASH.dir/commands/bg.c.o"
   "CMakeFiles/NYASH.dir/commands/cd.c.o"
   "CMakeFiles/NYASH.dir/commands/echo.c.o"

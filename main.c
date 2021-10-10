@@ -26,7 +26,6 @@ int main(void) {
         }
         display_prompt(status);
         if (getline(&inputBuffer, &bufSize, stdin) == EOF) {
-            status = -1;
             break;
         }
         insert_into_history(inputBuffer);

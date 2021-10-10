@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <malloc.h>
 #include "../globals.h"
-#include "../utils/parse.h"
 #include <pwd.h>
 #include <grp.h>
 #include <errno.h>
@@ -106,50 +105,43 @@ int ls_l_info(char *path) {
 }
 
 int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
-    char *processedPath = expand_path(path);
-    if (processedPath == NULL) return 1;
+    if (path == NULL) return 1;
     struct stat statBuff;
-    if (lstat(processedPath, &statBuff) == -1) {
-        perror(processedPath);
-        free(processedPath);
+    if (lstat(path, &statBuff) == -1) {
+        perror(path);
         return 1;
     }
     if (!S_ISDIR(statBuff.st_mode)) {
         if (flagL && ls_l_info(path)) return 1;
         printf("%s",path);
         printf("\n");
-        free(processedPath);
         return 0;
     }
     if (multipleDirs) {
-        printf("%s:\n", processedPath);
+        printf("%s:\n", path);
     }
 
-    if (flagL && print_total(processedPath, flagA)) return 1;
-    DIR *fDir = opendir(processedPath);
+    if (flagL && print_total(path, flagA)) return 1;
+    DIR *fDir = opendir(path);
     if (fDir == NULL) {
         perror("ls");
-        free(processedPath);
         return 1;
     }
     struct dirent *entry = NULL;
     char *filePath = (char *) malloc(PATH_MAX);
-    if (!filePath) {
+    if (filePath == NULL) {
         perror("ls");
-        free(processedPath);
-        free(filePath);
         return 1;
     }
     errno = 0;
 
     while ((entry = readdir(fDir))) {
         if (!flagA && entry->d_name[0] == '.') continue;
-        sprintf(filePath, "%s/%s", processedPath, entry->d_name);
+        sprintf(filePath, "%s/%s", path, entry->d_name);
 
         if (flagL && ls_l_info(filePath)) return 1;
         if (lstat(filePath, &statBuff) == -1) {
             perror(filePath);
-            free(processedPath);
             free(filePath);
             return 1;
         }
@@ -160,13 +152,11 @@ int ls_processDir(char *path, int flagA, int flagL, int multipleDirs) {
     }
     if (errno != 0) {
         perror("ls");
-        free(processedPath);
         free(filePath);
         return 1;
     }
     if (multipleDirs) printf("\n");
     closedir(fDir);
-    free(processedPath);
     free(filePath);
     return 0;
 }
